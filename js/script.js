@@ -1,8 +1,19 @@
-// OPEN INVITATION
 function openInvite(){
   document.getElementById("opening").style.display = "none";
   document.getElementById("main").style.display = "block";
 
+  // scroll ke atas dulu
+  window.scrollTo(0,0);
+
+  // HERO animation
+  const hero = document.querySelector(".hero");
+  if(hero){
+    setTimeout(() => {
+      hero.classList.add("show");
+    }, 300);
+  }
+
+  // play music
   const music = document.getElementById("music");
   if(music){
     music.play().catch(()=>{});

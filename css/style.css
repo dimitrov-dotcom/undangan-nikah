@@ -199,3 +199,42 @@ footer{
     grid-template-columns:1fr;
   }
 }
+/* =========================
+   HERO ENTER ANIMATION
+========================= */
+.hero{
+  opacity:0;
+  transform:translateY(30px);
+  transition:opacity 1s ease, transform 1s ease;
+}
+
+.hero.show{
+  opacity:1;
+  transform:translateY(0);
+}
+
+.hero h1,
+.hero p,
+#countdown{
+  opacity:0;
+  transform:translateY(20px);
+  transition:all .8s ease;
+}
+
+.hero.show h1{
+  transition-delay:.2s;
+  opacity:1;
+  transform:translateY(0);
+}
+
+.hero.show p{
+  transition-delay:.4s;
+  opacity:1;
+  transform:translateY(0);
+}
+
+.hero.show #countdown{
+  transition-delay:.6s;
+  opacity:1;
+  transform:translateY(0);
+}
