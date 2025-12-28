@@ -260,3 +260,100 @@ footer{
 .profile .card:nth-child(2){
   transition-delay:.5s;
 }
+/* =========================
+   SAWERAN / AMPL0P DIGITAL
+========================= */
+.gift{
+  background:#fff;
+}
+
+.gift h2{
+  font-family:'Playfair Display', serif;
+  color:#0b2e59;
+}
+
+.gift p{
+  max-width:360px;
+  margin:10px auto 20px;
+  font-size:14px;
+}
+
+.gift-box{
+  display:flex;
+  justify-content:center;
+  gap:14px;
+  flex-wrap:wrap;
+}
+
+.gift-box button{
+  padding:12px 24px;
+  border-radius:999px;
+  border:none;
+  background:linear-gradient(90deg,#f5d48e,#d6b15e);
+  font-weight:600;
+  cursor:pointer;
+}
+
+.gift small{
+  display:block;
+  margin-top:12px;
+  font-size:12px;
+  opacity:.7;
+}
+
+/* =========================
+   KOMENTAR
+========================= */
+.comment{
+  background:#f8fafc;
+}
+
+.comment h2{
+  font-family:'Playfair Display', serif;
+  margin-bottom:20px;
+}
+
+#commentForm{
+  max-width:400px;
+  margin:0 auto 30px;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
+#commentForm input,
+#commentForm textarea{
+  padding:12px;
+  border-radius:12px;
+  border:1px solid #e5e7eb;
+  font-size:14px;
+}
+
+#commentForm button{
+  padding:14px;
+  border:none;
+  border-radius:999px;
+  background:linear-gradient(90deg,#f5d48e,#d6b15e);
+  font-weight:600;
+}
+
+#commentList{
+  max-width:500px;
+  margin:auto;
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
+
+.comment-item{
+  background:#fff;
+  padding:14px 18px;
+  border-radius:14px;
+  box-shadow:0 8px 20px rgba(0,0,0,.05);
+}
+
+.comment-item strong{
+  display:block;
+  margin-bottom:6px;
+  color:#0b2e59;
+}

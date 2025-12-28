@@ -79,3 +79,39 @@ const showProfileCards = () => {
 };
 
 window.addEventListener("scroll", showProfileCards);
+// COPY SAWERAN
+function copyText(text){
+  navigator.clipboard.writeText(text);
+  alert("Nomor berhasil disalin 🤍");
+}
+
+// KOMENTAR LOCAL STORAGE
+const form = document.getElementById("commentForm");
+const list = document.getElementById("commentList");
+
+function loadComments(){
+  const data = JSON.parse(localStorage.getItem("comments")) || [];
+  list.innerHTML = "";
+  data.reverse().forEach(c => {
+    const div = document.createElement("div");
+    div.className = "comment-item";
+    div.innerHTML = `<strong>${c.name}</strong><p>${c.message}</p>`;
+    list.appendChild(div);
+  });
+}
+
+form.addEventListener("submit", e => {
+  e.preventDefault();
+
+  const name = document.getElementById("name").value;
+  const message = document.getElementById("message").value;
+
+  const data = JSON.parse(localStorage.getItem("comments")) || [];
+  data.push({ name, message });
+
+  localStorage.setItem("comments", JSON.stringify(data));
+  form.reset();
+  loadComments();
+});
+
+loadComments();
