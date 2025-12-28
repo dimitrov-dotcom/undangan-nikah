@@ -74,3 +74,10 @@ footer{
     grid-template-columns:1fr;
   }
 }
+.opening button{
+  transition:.3s;
+}
+.opening button:hover{
+  transform:scale(1.05);
+  opacity:.9;
+}
