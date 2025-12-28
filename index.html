@@ -4,14 +4,21 @@
   <meta charset="UTF-8">
   <title>Undangan Pernikahan Ahmad & Siti</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- GOOGLE FONT -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
+<!-- MUSIC -->
 <audio id="music" loop>
   <source src="assets/music.mp3" type="audio/mpeg">
 </audio>
 
+<!-- OPENING -->
 <section class="opening" id="opening">
   <h4>Kepada Yth</h4>
   <h1 id="guest">Tamu Undangan</h1>
@@ -19,15 +26,18 @@
   <button onclick="openInvite()">Buka Undangan</button>
 </section>
 
+<!-- MAIN -->
 <main id="main" style="display:none">
 
-  <section class="hero">
+  <!-- HERO -->
+  <section class="hero fade-up">
     <h1>Ahmad & Siti</h1>
     <p>Akan melangsungkan pernikahan</p>
     <div id="countdown"></div>
   </section>
 
-  <section class="profile">
+  <!-- PROFILE -->
+  <section class="profile fade-up">
     <div class="card">
       <h2>Ahmad</h2>
       <p>Putra dari Bpk. XXX & Ibu XXX</p>
@@ -38,7 +48,8 @@
     </div>
   </section>
 
-  <section class="event">
+  <!-- EVENT -->
+  <section class="event fade-up">
     <h2>Akad Nikah</h2>
     <p>Minggu, 12 Januari 2026</p>
     <p>09.00 WIB</p>
@@ -46,13 +57,15 @@
     <a href="https://maps.google.com" target="_blank">📍 Google Maps</a>
   </section>
 
-  <section class="rsvp">
+  <!-- RSVP -->
+  <section class="rsvp fade-up">
     <h2>Konfirmasi Kehadiran</h2>
-    <a href="https://wa.me/6281234567890?text=Saya%20akan%20hadir">
+    <a href="https://wa.me/6281234567890?text=Saya%20akan%20hadir" target="_blank">
       💬 RSVP WhatsApp
     </a>
   </section>
 
+  <!-- FOOTER -->
   <footer>
     <p>Terima kasih atas doa & restunya</p>
   </footer>
