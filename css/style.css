@@ -10,33 +10,41 @@ body{
   color:#1f2937;
 }
 
-/* OPENING */
 .opening{
-  height:100vh;
-  background:#4b4f5c;
+  min-height:100vh;
+  background:
+    linear-gradient(rgba(15,23,42,.7), rgba(15,23,42,.7)),
+    url("assets/gallery/nikah1.png") center/cover no-repeat;
   color:#fff;
+
   display:flex;
   flex-direction:column;
   justify-content:center;
   align-items:center;
   text-align:center;
-  padding:20px;
 }
-
 .opening h1{
   font-family:'Playfair Display', serif;
   font-size:36px;
-  color:#e6c87a;
+  background:linear-gradient(90deg,#f5d48e,#d6b15e,#f5d48e);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
 }
-
 .opening button{
-  margin-top:30px;
+  margin-top:24px;
   padding:14px 36px;
   border:none;
-  border-radius:40px;
-  background:linear-gradient(135deg,#f5d27a,#c9a84f);
+  border-radius:999px;
+  background:linear-gradient(90deg,#f5d48e,#d6b15e);
+  color:#111;
   font-weight:600;
   cursor:pointer;
+  transition:.3s;
+}
+
+.opening button:hover{
+  transform:scale(1.05);
+  box-shadow:0 10px 30px rgba(214,177,94,.4);
 }
 
 /* SECTION */
