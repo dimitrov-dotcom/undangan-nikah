@@ -144,9 +144,10 @@ section{
 }
 
 .slider-wrapper{
-  overflow:hidden;
+  width:100%;
   max-width:1000px;
   margin:auto;
+  overflow:hidden;
 }
 
 .slider-track{
@@ -156,8 +157,8 @@ section{
 }
 
 .slider-track img{
-  width:280px;
-  height:380px;
+  width:260px;
+  height:360px;
   object-fit:cover;
   border-radius:22px;
   flex-shrink:0;
