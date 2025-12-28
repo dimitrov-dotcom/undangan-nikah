@@ -1,3 +1,4 @@
+/* ================= RESET ================= */
 *{
   margin:0;
   padding:0;
@@ -8,56 +9,72 @@ body{
   font-family:'Poppins', sans-serif;
   background:#f8fafc;
   color:#1f2937;
+  overflow-x:hidden;
 }
 
 section{
-  padding:70px 20px;
+  padding:60px 20px;
   text-align:center;
 }
 
-/* OPENING */
+/* ================= COLOR THEME ================= */
+:root{
+  --emas:#d6b15e;
+  --emas-soft:#f5e6b8;
+  --hijau:#0f3d2e;
+  --navy:#0b2e59;
+  --dark:#020617;
+  --light:#f8fafc;
+}
+
+/* ================= OPENING ================= */
 .opening{
   height:100vh;
-  background:
-    linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.55)),
-    url("../assets/bg.jpg") center/cover no-repeat;
+  background:linear-gradient(rgba(2,6,23,.7),rgba(2,6,23,.7));
   color:#fff;
   display:flex;
   flex-direction:column;
   justify-content:center;
+  align-items:center;
+}
+
+.opening h4{
+  letter-spacing:2px;
+  opacity:.9;
 }
 
 .opening h1{
   font-family:'Playfair Display', serif;
   font-size:36px;
+  color:var(--emas);
   margin:10px 0;
 }
 
 .opening button{
   margin-top:30px;
-  padding:14px 34px;
+  padding:14px 36px;
   border:none;
   border-radius:30px;
-  background:#d6b15e;
+  background:linear-gradient(135deg,var(--emas),var(--emas-soft));
+  color:#000;
   font-weight:600;
   cursor:pointer;
-  transition:.3s;
 }
 
-.opening button:hover{
-  transform:scale(1.05);
-  opacity:.9;
-}
-
-/* HERO */
+/* ================= HERO ================= */
 .hero{
-  background:#0b2e59;
+  background:linear-gradient(135deg,var(--hijau),var(--navy));
   color:#fff;
 }
 
 .hero h1{
   font-family:'Playfair Display', serif;
   font-size:40px;
+  color:var(--emas);
+}
+
+.hero p{
+  opacity:.9;
 }
 
 #countdown{
@@ -65,73 +82,105 @@ section{
   font-size:18px;
 }
 
-/* PROFILE */
+/* ================= PROFILE ================= */
 .profile{
-  background:#f1f5f
-/* SLIDER */
-.slider{
-  overflow:hidden;
+  background:#fff;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
   max-width:900px;
-  margin:30px auto;
-  border-radius:20px;
+  margin:auto;
 }
 
-/* ================= GALLERY SLIDER HORIZONTAL ================= */
+.card{
+  background:#fff;
+  padding:30px;
+  border-radius:20px;
+  border:1px solid var(--emas-soft);
+  box-shadow:0 15px 40px rgba(0,0,0,.12);
+}
 
+.card h2{
+  font-family:'Playfair Display', serif;
+  color:var(--hijau);
+  margin-bottom:10px;
+}
+
+/* ================= GALLERY SLIDER (FIX FINAL) ================= */
 .gallery{
   background:#f8fafc;
 }
 
 .gallery h2{
   font-family:'Playfair Display', serif;
-  color:#0f3d2e;
-  margin-bottom:20px;
+  color:var(--hijau);
+  margin-bottom:25px;
 }
 
+/* wrapper */
 .slider-wrapper{
-  overflow:hidden;
+  overflow:hidden !important;
   width:100%;
 }
 
+/* track */
 .slider-track{
-  display:flex;
+  display:flex !important;
+  flex-direction:row !important;
   gap:16px;
+  padding:10px 20px;
   transition:transform .5s ease;
-  padding:10px;
 }
 
+/* image size (INI KUNCI) */
 .slider-track img{
-  width:260px;
-  height:360px;
-  object-fit:cover;
-  border-radius:20px;
-  flex-shrink:0;
-  box-shadow:0 15px 40px rgba(0,0,0,.15);
+  width:170px !important;
+  height:240px !important;
+  max-width:none !important;
+  object-fit:cover !important;
+  border-radius:18px;
+  flex-shrink:0 !important;
+  box-shadow:0 12px 30px rgba(0,0,0,.15);
+  display:block;
+}
+
+/* Tablet */
+@media(max-width:1024px){
+  .slider-track img{
+    width:190px !important;
+    height:270px !important;
+  }
 }
 
 /* Mobile */
 @media(max-width:768px){
+  .profile{
+    grid-template-columns:1fr;
+  }
+
   .slider-track img{
-    width:220px;
-    height:300px;
+    width:160px !important;
+    height:230px !important;
   }
 }
 
-/* DOTS */
-.dots{
-  display:flex;
-  justify-content:center;
-  gap:10px;
+/* ================= EVENT & RSVP ================= */
+.event a,
+.rsvp a{
+  display:inline-block;
+  margin-top:15px;
+  padding:12px 28px;
+  border-radius:30px;
+  background:linear-gradient(135deg,var(--emas),var(--emas-soft));
+  color:#000;
+  font-weight:600;
+  text-decoration:none;
 }
 
-.dots span{
-  width:10px;
-  height:10px;
-  border-radius:50%;
-  background:#cbd5e1;
-  cursor:pointer;
-}
-
-.dots span.active{
-  background:#0b2e59;
+/* ================= FOOTER ================= */
+footer{
+  background:var(--dark);
+  color:var(--emas-soft);
+  padding:40px 20px;
+  font-size:14px;
 }
