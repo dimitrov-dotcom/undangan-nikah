@@ -76,15 +76,45 @@ section{
   border-radius:20px;
 }
 
+/* ================= GALLERY SLIDER HORIZONTAL ================= */
+
+.gallery{
+  background:#f8fafc;
+}
+
+.gallery h2{
+  font-family:'Playfair Display', serif;
+  color:#0f3d2e;
+  margin-bottom:20px;
+}
+
+.slider-wrapper{
+  overflow:hidden;
+  width:100%;
+}
+
 .slider-track{
   display:flex;
-  transition:transform .6s ease;
+  gap:16px;
+  transition:transform .5s ease;
+  padding:10px;
 }
 
 .slider-track img{
-  width:100%;
+  width:260px;
+  height:360px;
+  object-fit:cover;
+  border-radius:20px;
   flex-shrink:0;
-  cursor:pointer;
+  box-shadow:0 15px 40px rgba(0,0,0,.15);
+}
+
+/* Mobile */
+@media(max-width:768px){
+  .slider-track img{
+    width:220px;
+    height:300px;
+  }
 }
 
 /* DOTS */
