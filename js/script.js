@@ -64,3 +64,18 @@ setInterval(()=>{
     behavior: "smooth"
   });
 }, 3500);
+// PROFILE CARD ANIMATION ON SCROLL
+const profileCards = document.querySelectorAll(".profile .card");
+
+const showProfileCards = () => {
+  profileCards.forEach(card => {
+    const cardTop = card.getBoundingClientRect().top;
+    const triggerPoint = window.innerHeight - 100;
+
+    if(cardTop < triggerPoint){
+      card.classList.add("show");
+    }
+  });
+};
+
+window.addEventListener("scroll", showProfileCards);

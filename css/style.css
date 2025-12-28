@@ -238,3 +238,25 @@ footer{
   opacity:1;
   transform:translateY(0);
 }
+/* =========================
+   PROFILE CARD ANIMATION
+========================= */
+.profile .card{
+  opacity:0;
+  transform:translateY(40px);
+  transition:all .8s ease;
+}
+
+.profile .card.show{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* delay otomatis per card */
+.profile .card:nth-child(1){
+  transition-delay:.2s;
+}
+
+.profile .card:nth-child(2){
+  transition-delay:.5s;
+}
