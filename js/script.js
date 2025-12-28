@@ -30,3 +30,56 @@ setInterval(()=>{
 
   countdown.innerHTML = `${d} Hari ${h} Jam ${m} Menit`;
 },1000);
+// ===== GALLERY SLIDER =====
+const track = document.getElementById("sliderTrack");
+const slides = track.querySelectorAll("img");
+const dotsContainer = document.getElementById("dots");
+
+let index = 0;
+let slideInterval;
+
+// create dots
+slides.forEach((_, i)=>{
+  const dot = document.createElement("span");
+  if(i === 0) dot.classList.add("active");
+  dot.onclick = () => moveSlide(i);
+  dotsContainer.appendChild(dot);
+});
+
+const dots = dotsContainer.querySelectorAll("span");
+
+function moveSlide(i){
+  index = i;
+  track.style.transform = `translateX(-${index * 100}%)`;
+  dots.forEach(d=>d.classList.remove("active"));
+  dots[index].classList.add("active");
+  resetAutoSlide();
+}
+
+function autoSlide(){
+  index = (index + 1) % slides.length;
+  moveSlide(index);
+}
+
+function resetAutoSlide(){
+  clearInterval(slideInterval);
+  slideInterval = setInterval(autoSlide, 4000);
+}
+
+// auto start
+slideInterval = setInterval(autoSlide, 4000);
+
+// swipe support (mobile)
+let startX = 0;
+track.addEventListener("touchstart", e=>{
+  startX = e.touches[0].clientX;
+});
+
+track.addEventListener("touchend", e=>{
+  let endX = e.changedTouches[0].clientX;
+  if(startX - endX > 50) autoSlide();
+  if(endX - startX > 50){
+    index = (index - 1 + slides.length) % slides.length;
+    moveSlide(index);
+  }
+});

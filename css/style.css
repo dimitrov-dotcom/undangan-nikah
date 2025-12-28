@@ -68,3 +68,40 @@ section{
 /* PROFILE */
 .profile{
   background:#f1f5f
+/* SLIDER */
+.slider{
+  overflow:hidden;
+  max-width:900px;
+  margin:30px auto;
+  border-radius:20px;
+}
+
+.slider-track{
+  display:flex;
+  transition:transform .6s ease;
+}
+
+.slider-track img{
+  width:100%;
+  flex-shrink:0;
+  cursor:pointer;
+}
+
+/* DOTS */
+.dots{
+  display:flex;
+  justify-content:center;
+  gap:10px;
+}
+
+.dots span{
+  width:10px;
+  height:10px;
+  border-radius:50%;
+  background:#cbd5e1;
+  cursor:pointer;
+}
+
+.dots span.active{
+  background:#0b2e59;
+}
