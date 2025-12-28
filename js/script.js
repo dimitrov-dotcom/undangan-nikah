@@ -36,15 +36,20 @@ setInterval(()=>{
   countdown.innerHTML = `${d} Hari ${h} Jam ${m} Menit`;
 },1000);
 
-// AUTO SCROLL GALLERY
+// AUTO SCROLL GALLERY (AMAN)
 const gallery = document.getElementById("gallery");
 let scrollPos = 0;
 
 setInterval(()=>{
   if(!gallery) return;
+
   scrollPos += 240;
   if(scrollPos >= gallery.scrollWidth - gallery.clientWidth){
     scrollPos = 0;
   }
-  gallery.scrollTo({ left: scrollPos, behavior:"smooth" });
+
+  gallery.scrollTo({
+    left: scrollPos,
+    behavior: "smooth"
+  });
 }, 3500);
