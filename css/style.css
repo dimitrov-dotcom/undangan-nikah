@@ -12,39 +12,73 @@ body{
   overflow-x:hidden;
 }
 
-/* OPENING */
+/* =========================
+   OPENING – MODERN WEDDING PREMIUM (OPTION 3)
+========================= */
 .opening{
   min-height:100vh;
   background:
-    linear-gradient(rgba(15,23,42,.6), rgba(15,23,42,.6)),
-    url("../assets/gallery/hero.jpg") center/cover no-repeat;
-  color:#fff;
+    linear-gradient(
+      rgba(15,23,42,0.65),
+      rgba(15,23,42,0.65)
+    ),
+    url("../assets/gallery/nikah4.png") center/cover no-repeat;
+
+  color:#ffffff;
+
   display:flex;
   flex-direction:column;
   justify-content:center;
   align-items:center;
   text-align:center;
-  padding:20px;
+  padding:24px;
+}
+
+.opening h4{
+  font-size:14px;
+  letter-spacing:1.5px;
+  color:#e5e7eb;
 }
 
 .opening h1{
-  font-family:'Playfair Display',serif;
-  font-size:34px;
-  margin:12px 0;
-  background:linear-gradient(90deg,#f5d48e,#d6b15e);
+  font-family:'Playfair Display', serif;
+  font-size:36px;
+  margin:14px 0;
+
+  background:linear-gradient(
+    90deg,
+    #f5d48e,
+    #d6b15e,
+    #f5d48e
+  );
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
 }
 
+.opening p{
+  max-width:320px;
+  font-size:14px;
+  line-height:1.7;
+  color:#e5e7eb;
+}
+
 .opening button{
-  margin-top:28px;
-  padding:14px 42px;
+  margin-top:30px;
+  padding:14px 44px;
   border:none;
   border-radius:999px;
   background:linear-gradient(90deg,#f5d48e,#d6b15e);
+  color:#111827;
   font-weight:600;
+  font-size:14px;
   cursor:pointer;
+  transition:all .3s ease;
 }
+
+.opening button:hover{
+  transform:scale(1.05);
+  box-shadow:0 18px 40px rgba(214,177,94,.45);
+}}
 
 /* HERO */
 .hero{
