@@ -1,161 +1,50 @@
-// ================= OPEN INVITATION + MUSIC =================
+// OPEN INVITATION
 function openInvite(){
-  const opening = document.getElementById("opening");
-  const main = document.getElementById("main");
+  document.getElementById("opening").style.display = "none";
+  document.getElementById("main").style.display = "block";
+
   const music = document.getElementById("music");
-
-  if(opening) opening.style.display = "none";
-  if(main) main.style.display = "block";
-
   if(music){
-    music.volume = 0.6;
-    music.play().catch(err=>{
-      console.log("Music blocked by browser:", err);
-    });
+    music.play().catch(()=>{});
   }
 }
 
-// ================= NAMA TAMU =================
+// NAMA TAMU
 const params = new URLSearchParams(window.location.search);
 const guest = params.get("to");
-const guestEl = document.getElementById("guest");
-
-if(guest && guestEl){
-  guestEl.innerText = guest.replace(/\+/g," ");
+if(guest){
+  document.getElementById("guest").innerText = guest.replace(/\+/g," ");
 }
 
-// ================= COUNTDOWN =================
-const countdown = document.getElementById("countdown");
+// COUNTDOWN
 const targetDate = new Date("2026-01-12T09:00:00").getTime();
+const countdown = document.getElementById("countdown");
 
-if(countdown){
-  setInterval(()=>{
-    const now = new Date().getTime();
-    const diff = targetDate - now;
+setInterval(()=>{
+  const now = new Date().getTime();
+  const diff = targetDate - now;
 
-    if(diff <= 0){
-      countdown.innerHTML = "Hari Bahagia Telah Tiba 💍";
-      return;
-    }
-
-    const d = Math.floor(diff / (1000*60*60*24));
-    const h = Math.floor((diff / (1000*60*60)) % 24);
-    const m = Math.floor((diff / (1000*60)) % 60);
-
-    countdown.innerHTML = `${d} Hari ${h} Jam ${m} Menit`;
-  },1000);
-}
-
-// ================= GALLERY SLIDER =================
-const track = document.getElementById("sliderTrack");
-const dotsContainer = document.getElementById("dots");
-
-if(track && dotsContainer){
-  const slides = track.querySelectorAll("img");
-  let index = 0;
-  let slideInterval;
-
-  // create dots
-  slides.forEach((_, i)=>{
-    const dot = document.createElement("span");
-    if(i === 0) dot.classList.add("active");
-    dot.onclick = ()=>moveSlide(i);
-    dotsContainer.appendChild(dot);
-  });
-
-  const dots = dotsContainer.querySelectorAll("span");
-
-  function moveSlide(i){
-    index = i;
-    track.style.transform = `translateX(-${index * 100}%)`;
-    dots.forEach(d=>d.classList.remove("active"));
-    dots[index].classList.add("active");
-    resetAutoSlide();
+  if(diff <= 0){
+    countdown.innerHTML = "Hari Bahagia Telah Tiba 🤍";
+    return;
   }
 
-  function autoSlide(){
-    index = (index + 1) % slides.length;
-    moveSlide(index);
+  const d = Math.floor(diff / (1000*60*60*24));
+  const h = Math.floor((diff / (1000*60*60)) % 24);
+  const m = Math.floor((diff / (1000*60)) % 60);
+
+  countdown.innerHTML = `${d} Hari ${h} Jam ${m} Menit`;
+},1000);
+
+// AUTO SCROLL GALLERY
+const gallery = document.getElementById("gallery");
+let scrollPos = 0;
+
+setInterval(()=>{
+  if(!gallery) return;
+  scrollPos += 240;
+  if(scrollPos >= gallery.scrollWidth - gallery.clientWidth){
+    scrollPos = 0;
   }
-
-  function resetAutoSlide(){
-    clearInterval(slideInterval);
-    slideInterval = setInterval(autoSlide, 4000);
-  }
-
-  // auto start
-  slideInterval = setInterval(autoSlide, 4000);
-
-  // swipe support
-  let startX = 0;
-  track.addEventListener("touchstart", e=>{
-    startX = e.touches[0].clientX;
-  });
-
-  track.addEventListener("touchend", e=>{
-    let endX = e.changedTouches[0].clientX;
-    if(startX - endX > 50) autoSlide();
-    if(endX - startX > 50){
-      index = (index - 1 + slides.length) % slides.length;
-      moveSlide(index);
-    }
-  });
-}
-/* ================= GALLERY AUTO SLIDER ================= */
-const track = document.getElementById("sliderTrack");
-const slides = track.querySelectorAll("img");
-
-let index = 0;
-let slideWidth = slides[0].offsetWidth + 16; // + gap
-let interval;
-
-/* move slide */
-function moveSlide() {
-  index++;
-  if (index >= slides.length) {
-    index = 0;
-  }
-  track.style.transform = `translateX(-${index * slideWidth}px)`;
-}
-
-/* auto start */
-function startAuto() {
-  interval = setInterval(moveSlide, 3000);
-}
-
-/* reset auto when swipe */
-function resetAuto() {
-  clearInterval(interval);
-  startAuto();
-}
-
-startAuto();
-
-/* ================= SWIPE SUPPORT (MOBILE) ================= */
-let startX = 0;
-
-track.addEventListener("touchstart", (e) => {
-  startX = e.touches[0].clientX;
-  clearInterval(interval);
-});
-
-track.addEventListener("touchend", (e) => {
-  let endX = e.changedTouches[0].clientX;
-  let diff = startX - endX;
-
-  if (diff > 50) {
-    index = (index + 1) % slides.length;
-  } else if (diff < -50) {
-    index = (index - 1 + slides.length) % slides.length;
-  }
-
-  track.style.transform = `translateX(-${index * slideWidth}px)`;
-  resetAuto();
-});
-
-/* ================= RESIZE FIX ================= */
-window.addEventListener("resize", () => {
-  slideWidth = slides[0].offsetWidth + 16;
-  track.style.transform = `translateX(-${index * slideWidth}px)`;
-});
-
+  gallery.scrollTo({ left: scrollPos, behavior:"smooth" });
+}, 3500);
