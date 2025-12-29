@@ -10,34 +10,37 @@ document.addEventListener("DOMContentLoaded", () => {
   const music     = document.getElementById("music");
   const toggle    = document.getElementById("musictoggle");
 
+/* ================= BUKA UNDANGAN ================= */
   if (openBtn && opening && main) {
     openBtn.addEventListener("click", () => {
       opening.style.display = "none";
       main.style.display = "block";
       window.scrollTo(0, 0);
 
-      if (hero) hero.classList.add("show");
-
       if (music) {
-        music.play().catch(() => {});
+        music.play().catch(()=>{});
+        toggle.classList.add("playing");
+        toggle.textContent = "🔊";
       }
     });
   }
 
-  /* ===============================
-     MUSIC TOGGLE
-  =============================== */
+  /* ================= MUSIC TOGGLE ================= */
   if (toggle && music) {
     toggle.addEventListener("click", () => {
       if (music.paused) {
-        music.play();
+        music.play().catch(()=>{});
         toggle.textContent = "🔊";
+        toggle.classList.add("playing");
       } else {
         music.pause();
         toggle.textContent = "🔇";
+        toggle.classList.remove("playing");
       }
     });
   }
+
+});
 
   /* ===============================
      NAMA TAMU DARI URL
