@@ -342,3 +342,27 @@ divider-animate{
 @keyframes shimmer{
   to{ stroke-dashoffset:-160; }
 }
+/* =========================
+   FIX DIVIDER VISIBILITY
+========================= */
+.divider-section{
+  padding: 40px 0;
+  background: #faf9f7;
+}
+
+.divider-wrap{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.divider{
+  width: 320px;
+  max-width: 90%;
+}
+
+/* PAKSA DIVIDER TERLIHAT */
+.divider-animate{
+  opacity: 1 !important;
+  transform: none !important;
+}
