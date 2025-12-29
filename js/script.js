@@ -74,3 +74,29 @@ const observer=new IntersectionObserver(entries=>{
 document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
 
 });
+const qrisThumb = document.getElementById("qrisThumb");
+const qrisModal = document.getElementById("qrisModal");
+const qrisClose = document.getElementById("qrisClose");
+
+if(qrisThumb){
+qrisThumb.addEventListener("click",()=>{
+qrisModal.classList.add("show");
+document.body.style.overflow = "hidden";
+});
+}
+
+if(qrisClose){
+qrisClose.addEventListener("click",()=>{
+qrisModal.classList.remove("show");
+document.body.style.overflow = "";
+});
+}
+
+if(qrisModal){
+qrisModal.addEventListener("click",(e)=>{
+if(e.target === qrisModal){
+qrisModal.classList.remove("show");
+document.body.style.overflow = "";
+}
+});
+

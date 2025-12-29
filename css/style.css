@@ -227,17 +227,27 @@ section::after{
 
 .gallery-track{
   display:flex;
-  gap:18px;
+  gap:20px;
   overflow-x:auto;
-  padding-bottom:10px;
+  scroll-snap-type:x mandatory;
+  padding:20px 0;
 }
 
-.gallery-track::-webkit-scrollbar{display:none;}
-
 .gallery-track img{
-  height:240px;
-  border-radius:20px;
-  box-shadow:0 14px 40px rgba(0,0,0,.6);
+  height:320px;              /* LEBIH BESAR */
+  min-width:220px;           /* Biar tidak gepeng */
+  object-fit:cover;
+  border-radius:24px;
+  scroll-snap-align:center;
+  box-shadow:0 18px 50px rgba(0,0,0,.55);
+}
+
+/* HP */
+@media(max-width:768px){
+  .gallery-track img{
+    height:360px;            /* FULL FEEL */
+    min-width:260px;
+  }
 }
 
 /* =====================================================
@@ -368,3 +378,102 @@ footer{
   }
 }
 
+/* QRIS THUMB */
+.qris-frame img{
+  cursor:pointer;
+  transition:.3s ease;
+}
+.qris-frame img:hover{
+  transform:scale(1.05);
+}
+
+/* MODAL FULLSCREEN */
+.qris-modal{
+  position:fixed;
+  inset:0;
+  background:rgba(2,6,23,.9);
+  backdrop-filter:blur(6px);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  z-index:9999;
+
+  opacity:0;
+  pointer-events:none;
+  transition:.4s ease;
+}
+
+.qris-modal.show{
+  opacity:1;
+  pointer-events:auto;
+}
+
+.qris-modal img{
+  max-width:90%;
+  max-height:90%;
+  border-radius:20px;
+  box-shadow:0 0 80px rgba(214,177,94,.9);
+  animation:zoomIn .35s ease;
+}
+
+/* CLOSE BUTTON */
+.qris-close{
+  position:absolute;
+  top:20px;
+  right:26px;
+  font-size:36px;
+  color:#f5d48e;
+  cursor:pointer;
+  user-select:none;
+}
+
+/* ANIMASI */
+@keyframes zoomIn{
+  from{
+    transform:scale(.7);
+    opacity:0;
+  }
+  to{
+    transform:scale(1);
+    opacity:1;
+  }
+}
+.qris-modal{
+  position:fixed;
+  inset:0;
+  background:rgba(2,6,23,.92);
+  backdrop-filter:blur(6px);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  z-index:9999;
+
+  opacity:0;
+  pointer-events:none;
+  transition:.4s ease;
+}
+
+.qris-modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.92);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:9999;
+}
+.qris-modal.show{
+  display:flex;
+}
+.qris-modal img{
+  max-width:90%;
+  max-height:90%;
+}
+#qrisClose{
+  position:absolute;
+  top:20px;
+  right:20px;
+  font-size:30px;
+  color:#fff;
+  cursor:pointer;
+}
