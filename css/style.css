@@ -315,7 +315,16 @@ footer{
 
 .divider-wrap{
   display:flex;
-  justify-content:center;
+divider-animate{
+  opacity:0;
+  transform:translateY(20px);
+  transition:.8s ease;
+}
+
+.divider-animate.show{
+  opacity:1;
+  transform:none;
+}  justify-content:center;
   align-items:center;
 }
 
