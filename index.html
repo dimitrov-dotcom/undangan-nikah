@@ -5,160 +5,33 @@
 <title>Undangan Pernikahan Ahmad & Siti</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- FONT -->
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500&family=Amiri&display=swap" rel="stylesheet">
-
-<style>
-/* ================= RESET ================= */
-*{margin:0;padding:0;box-sizing:border-box}
-body{
-  font-family:'Poppins',sans-serif;
-  background:#faf9f7;
-  color:#1f2937;
-  overflow-x:hidden;
-}
-
-/* ================= OPENING ================= */
-.opening{
-  min-height:100vh;
-  background:linear-gradient(rgba(10,25,47,.75),rgba(10,25,47,.75)),
-  url("assets/gallery/nikah4.png") center/cover no-repeat;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  text-align:center;
-  color:#fff;
-  padding:24px;
-}
-.opening h4{letter-spacing:2px;font-size:14px}
-.opening h1{
-  font-family:'Playfair Display',serif;
-  font-size:34px;
-  margin:16px 0;
-  background:linear-gradient(90deg,#f5d48e,#d6b15e,#f5d48e);
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-}
-.opening button{
-  margin-top:30px;
-  padding:14px 44px;
-  border:none;
-  border-radius:999px;
-  background:linear-gradient(90deg,#f5d48e,#d6b15e);
-  font-weight:600;
-  cursor:pointer;
-}
-
-/* ================= HERO ================= */
-.hero{
-  background:linear-gradient(to bottom,#0b2e59,#153f75);
-  color:#fff;
-  text-align:center;
-  padding:90px 20px;
-  opacity:0;
-  transform:translateY(30px);
-  transition:1s ease;
-}
-.hero.show{opacity:1;transform:none}
-.hero h1{
-  font-family:'Playfair Display',serif;
-  font-size:38px;
-  margin-top:20px;
-}
-.hero p{opacity:.9}
-#countdown{margin-top:14px}
-
-/* ================= BISMILLAH ================= */
-.bismillah-premium{
-  display:flex;
-  justify-content:center;
-  margin-bottom:26px;
-  opacity:0;
-  transform:translateY(-20px);
-  animation:bismillahReveal 1.8s ease forwards;
-  animation-delay:.6s;
-}
-.bismillah-svg{
-  width:420px;
-  max-width:95%;
-}
-.bismillah-text{
-  font-family:'Amiri',serif;
-  font-size:54px;
-  fill:url(#goldFlow);
-  animation:goldFlowMove 7s linear infinite;
-  text-shadow:
-    0 0 18px rgba(214,177,94,.6),
-    0 0 40px rgba(245,212,142,.4);
-}
-
-@keyframes goldFlowMove{
-  from{fill-position:0% 0%}
-  to{fill-position:200% 0%}
-}
-@keyframes bismillahReveal{
-  to{opacity:1;transform:none}
-}
-@media(max-width:768px){
-  .bismillah-text{font-size:44px}
-}
-
-/* ================= SECTION ================= */
-section{padding:70px 20px}
-section>*{max-width:900px;margin:auto}
-
-/* ================= PROFILE ================= */
-.profile{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:20px;
-}
-.card{
-  background:#fff;
-  padding:30px;
-  border-radius:20px;
-  text-align:center;
-  box-shadow:0 10px 30px rgba(0,0,0,.08);
-}
-@media(max-width:768px){
-  .profile{grid-template-columns:1fr}
-}
-
-/* ================= FOOTER ================= */
-footer{
-  background:#020617;
-  color:#fff;
-  padding:40px 20px;
-  text-align:center;
-}
-</style>
+<link rel="stylesheet" href="css/style.css">
 </head>
-
 <body>
 
 <!-- MUSIC -->
 <audio id="music" loop>
   <source src="assets/music.mp3" type="audio/mpeg">
 </audio>
+<button id="musicToggle" class="music-btn">🔊</button>
 
 <!-- OPENING -->
 <section class="opening" id="opening">
   <h4>Kepada Yth</h4>
   <h1 id="guest">Tamu Undangan</h1>
-  <p>Kami mengundang Anda untuk hadir di pernikahan kami</p>
+  <p>Dengan penuh rasa syukur kami mengundang Anda</p>
   <button id="openBtn">Buka Undangan</button>
 </section>
 
-<!-- MAIN -->
 <main id="main" style="display:none">
 
 <!-- HERO -->
-<section class="hero" id="hero">
+<section class="hero reveal" id="hero">
 
   <!-- BISMILLAH -->
-  <div class="bismillah-premium">
-    <svg viewBox="0 0 900 260" class="bismillah-svg">
+  <div class="bismillah">
+    <svg viewBox="0 0 900 260">
       <defs>
         <linearGradient id="goldFlow" x1="0%" y1="0%" x2="200%" y2="0%">
           <stop offset="0%" stop-color="#b48b3d"/>
@@ -167,18 +40,11 @@ footer{
           <stop offset="75%" stop-color="#fff3c4"/>
           <stop offset="100%" stop-color="#b48b3d"/>
         </linearGradient>
-        <filter id="softGlow" x="-40%" y="-40%" width="180%" height="180%">
-          <feGaussianBlur stdDeviation="6" result="blur"/>
-          <feMerge>
-            <feMergeNode in="blur"/>
-            <feMergeNode in="SourceGraphic"/>
-          </feMerge>
-        </filter>
       </defs>
 
-      <path id="bCurve" d="M100 180 Q450 60 800 180" fill="none"/>
-      <text filter="url(#softGlow)">
-        <textPath href="#bCurve" startOffset="50%" text-anchor="middle"
+      <path id="curve" d="M100 180 Q450 60 800 180" fill="none"/>
+      <text>
+        <textPath href="#curve" startOffset="50%" text-anchor="middle"
           class="bismillah-text">
           بِسْمِ ٱللّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ
         </textPath>
@@ -189,11 +55,12 @@ footer{
   <h1>Ahmad & Siti</h1>
   <p>Akan melangsungkan pernikahan</p>
   <div id="countdown"></div>
-
 </section>
 
+<div class="divider"></div>
+
 <!-- PROFILE -->
-<section class="profile">
+<section class="profile reveal">
   <div class="card">
     <h2>Ahmad</h2>
     <p>Putra dari Bpk. XXX & Ibu XXX</p>
@@ -204,50 +71,60 @@ footer{
   </div>
 </section>
 
+<div class="divider"></div>
+
+<!-- GALLERY -->
+<section class="gallery reveal">
+  <h2>Galeri Foto</h2>
+  <div class="gallery-track">
+    <img src="assets/gallery/nikah1.png">
+    <img src="assets/gallery/nikah2.png">
+    <img src="assets/gallery/nikah3.png">
+    <img src="assets/gallery/nikah4.png">
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- EVENT -->
+<section class="event reveal">
+  <h2>Akad Nikah</h2>
+  <p>Minggu, 12 Januari 2026</p>
+  <p>09.00 WIB</p>
+  <a href="https://maps.google.com" target="_blank">📍 Google Maps</a>
+</section>
+
+<div class="divider"></div>
+
+<!-- QRIS SAWERAN -->
+<section class="qris-section reveal">
+  <h2>Saweran Digital</h2>
+  <p>Doa & restu Anda adalah hadiah terindah</p>
+
+  <div class="qris-frame">
+    <img src="assets/qris.png" alt="QRIS Pernikahan">
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- COMMENT -->
+<section class="comment reveal">
+  <h2>Ucapan & Doa</h2>
+  <form id="commentForm">
+    <input id="name" placeholder="Nama" required>
+    <textarea id="message" placeholder="Ucapan & doa..." required></textarea>
+    <button>Kirim</button>
+  </form>
+  <div id="commentList"></div>
+</section>
+
 <footer>
   <p>Terima kasih atas doa & restunya</p>
 </footer>
 
 </main>
 
-<script>
-document.addEventListener("DOMContentLoaded",()=>{
-
-const openBtn=document.getElementById("openBtn");
-const opening=document.getElementById("opening");
-const main=document.getElementById("main");
-const hero=document.getElementById("hero");
-const music=document.getElementById("music");
-
-openBtn.addEventListener("click",()=>{
-  opening.style.display="none";
-  main.style.display="block";
-  hero.classList.add("show");
-  music.play().catch(()=>{});
-});
-
-const params=new URLSearchParams(window.location.search);
-const guest=params.get("to");
-if(guest){
-  document.getElementById("guest").innerText=guest.replace(/\+/g," ");
-}
-
-const target=new Date("2026-01-12T09:00:00").getTime();
-setInterval(()=>{
-  const diff=target-Date.now();
-  if(diff<=0){
-    document.getElementById("countdown").innerText="Hari Bahagia 🤍";
-    return;
-  }
-  const d=Math.floor(diff/86400000);
-  const h=Math.floor(diff/3600000)%24;
-  const m=Math.floor(diff/60000)%60;
-  document.getElementById("countdown").innerText=
-    `${d} Hari ${h} Jam ${m} Menit`;
-},1000);
-
-});
-</script>
-
+<script src="js/script.js"></script>
 </body>
 </html>

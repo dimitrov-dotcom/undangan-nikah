@@ -1,201 +1,184 @@
-/* =========================
-   RESET
-========================= */
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
-
+*{margin:0;padding:0;box-sizing:border-box}
 body{
   font-family:'Poppins',sans-serif;
-  background:#faf9f7;
-  color:#1f2937;
-  overflow-x:hidden;
+  background:#020617;
+  color:#fff;
 }
 
-/* =========================
-   OPENING
-========================= */
+/* OPENING */
 .opening{
   min-height:100vh;
-  background:
-    linear-gradient(rgba(10,25,47,.75),rgba(10,25,47,.75)),
-    url("../assets/gallery/nikah4.png") center/cover no-repeat;
-  color:#fff;
+  background:radial-gradient(circle at top,#111827,#000);
   display:flex;
   flex-direction:column;
   justify-content:center;
   align-items:center;
   text-align:center;
-  padding:24px;
 }
-
-.opening h4{
-  font-size:14px;
-  letter-spacing:2px;
-  opacity:.9;
-}
-
 .opening h1{
   font-family:'Playfair Display',serif;
-  font-size:36px;
-  margin:16px 0;
-  background:linear-gradient(90deg,#f5d48e,#d6b15e,#f5d48e);
+  font-size:38px;
+  background:linear-gradient(90deg,#f5d48e,#d6b15e);
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
 }
-
-.opening p{
-  font-size:14px;
-  max-width:320px;
-  line-height:1.7;
-}
-
 .opening button{
-  margin-top:30px;
+  margin-top:28px;
   padding:14px 44px;
   border:none;
   border-radius:999px;
   background:linear-gradient(90deg,#f5d48e,#d6b15e);
-  font-weight:600;
-  cursor:pointer;
 }
 
-/* =========================
-   HERO
-========================= */
+/* HERO */
 .hero{
-  background:linear-gradient(to bottom,#0b2e59,#153f75);
-  color:#fff;
+  padding:100px 20px;
   text-align:center;
-  padding:90px 20px;
-  opacity:0;
-  transform:translateY(30px);
-  transition:1s ease;
+  background:linear-gradient(to bottom,#020617,#0b2e59);
 }
-
-.hero.show{
-  opacity:1;
-  transform:none;
-}
-
 .hero h1{
   font-family:'Playfair Display',serif;
-  font-size:38px;
-  margin-top:20px;
+  font-size:44px;
 }
 
-.hero p{
-  opacity:.9;
-  margin-top:6px;
-}
-
-#countdown{
-  margin-top:14px;
-  font-weight:500;
-}
-
-/* =========================
-   BISMILLAH PREMIUM
-========================= */
-.bismillah-premium{
-  display:flex;
-  justify-content:center;
-  margin-bottom:26px;
-  opacity:0;
-  transform:translateY(-20px);
-  animation:bismillahReveal 1.8s ease forwards;
-  animation-delay:.6s;
-}
-
-.bismillah-svg{
-  width:420px;
-  max-width:95%;
-}
-
+/* BISMILLAH */
 .bismillah-text{
   font-family:'Amiri',serif;
-  font-size:54px;
+  font-size:58px;
   fill:url(#goldFlow);
-  animation:goldMove 7s linear infinite;
-  text-shadow:
-    0 0 18px rgba(214,177,94,.6),
-    0 0 40px rgba(245,212,142,.4);
+  animation:goldMove 6s linear infinite;
 }
-
 @keyframes goldMove{
-  from{fill-position:0% 0%}
-  to{fill-position:200% 0%}
+  from{fill-position:0%}
+  to{fill-position:200%}
 }
 
-@keyframes bismillahReveal{
-  to{opacity:1;transform:none}
+/* DIVIDER */
+.divider{
+  width:65%;
+  height:2px;
+  margin:50px auto;
+  background:linear-gradient(90deg,transparent,#d6b15e,transparent);
 }
 
-@media(max-width:768px){
-  .bismillah-text{font-size:44px}
-}
-
-/* =========================
-   SECTION BASE
-========================= */
-section{
-  padding:70px 20px;
-}
-
-section > *{
-  max-width:900px;
-  margin:auto;
-}
-
-/* =========================
-   PROFILE
-========================= */
+/* PROFILE */
 .profile{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:20px;
+  gap:22px;
+  padding:60px 20px;
 }
-
 .card{
-  background:#fff;
-  padding:30px;
-  border-radius:20px;
+  border:1px solid rgba(214,177,94,.3);
+  border-radius:22px;
+  padding:34px;
   text-align:center;
-  box-shadow:0 10px 30px rgba(0,0,0,.08);
+  box-shadow:0 0 50px rgba(214,177,94,.25);
 }
-
 @media(max-width:768px){
   .profile{grid-template-columns:1fr}
 }
 
-/* =========================
-   FOOTER
-========================= */
+/* GALLERY */
+.gallery{
+  padding:60px 20px;
+  text-align:center;
+}
+.gallery-track{
+  display:flex;
+  gap:16px;
+  overflow-x:auto;
+}
+.gallery-track img{
+  height:240px;
+  border-radius:20px;
+}
+
+/* EVENT */
+.event{
+  padding:60px 20px;
+  text-align:center;
+}
+.event a{
+  display:inline-block;
+  margin-top:18px;
+  padding:14px 34px;
+  background:linear-gradient(90deg,#f5d48e,#d6b15e);
+  color:#000;
+  border-radius:999px;
+}
+
+/* QRIS EMAS */
+.qris-section{
+  text-align:center;
+  padding:60px 20px;
+}
+.qris-frame{
+  margin:30px auto;
+  width:260px;
+  padding:16px;
+  border-radius:20px;
+  background:linear-gradient(120deg,#d6b15e,#fff3c4,#d6b15e);
+  animation:qrisGlow 4s linear infinite;
+}
+.qris-frame img{
+  width:100%;
+  border-radius:12px;
+}
+@keyframes qrisGlow{
+  0%{box-shadow:0 0 20px rgba(214,177,94,.4)}
+  50%{box-shadow:0 0 50px rgba(214,177,94,.9)}
+  100%{box-shadow:0 0 20px rgba(214,177,94,.4)}
+}
+
+/* COMMENT */
+.comment{
+  padding:60px 20px;
+}
+.comment form{
+  max-width:500px;
+  margin:auto;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+.comment input,.comment textarea{
+  padding:14px;
+  border-radius:12px;
+  border:none;
+}
+.comment button{
+  padding:14px;
+  border:none;
+  border-radius:999px;
+  background:linear-gradient(90deg,#f5d48e,#d6b15e);
+}
+
+/* FOOTER */
 footer{
-  background:#020617;
-  color:#fff;
-  padding:40px 20px;
+  background:#000;
+  padding:40px;
   text-align:center;
 }
 
-/* =========================
-   MUSIC BUTTON
-========================= */
+/* MUSIC */
 .music-btn{
   position:fixed;
   bottom:20px;
   right:20px;
-  width:52px;
-  height:52px;
+  background:#d6b15e;
+  border:none;
+  padding:14px;
   border-radius:50%;
-  background:linear-gradient(90deg,#f5d48e,#d6b15e);
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  font-size:22px;
-  cursor:pointer;
-  z-index:999;
-  box-shadow:0 10px 30px rgba(0,0,0,.25);
+}
+
+/* REVEAL */
+.reveal{
+  opacity:0;
+  transform:translateY(40px);
+  transition:1s ease;
+}
+.reveal.show{
+  opacity:1;
+  transform:none;
 }

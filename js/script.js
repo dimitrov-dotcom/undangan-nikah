@@ -1,73 +1,76 @@
 document.addEventListener("DOMContentLoaded",()=>{
 
-  /* =========================
-     OPEN INVITATION
-  ========================= */
-  const openBtn = document.getElementById("openBtn");
-  const opening = document.getElementById("opening");
-  const main = document.getElementById("main");
-  const hero = document.querySelector(".hero");
-  const music = document.getElementById("music");
+const openBtn=document.getElementById("openBtn");
+const opening=document.getElementById("opening");
+const main=document.getElementById("main");
+const hero=document.getElementById("hero");
+const music=document.getElementById("music");
+const toggle=document.getElementById("musicToggle");
 
-  if(openBtn){
-    openBtn.addEventListener("click",()=>{
-      opening.style.display="none";
-      main.style.display="block";
-      window.scrollTo(0,0);
+openBtn.onclick=()=>{
+  opening.style.display="none";
+  main.style.display="block";
+  hero.classList.add("show");
+  music.play().catch(()=>{});
+};
 
-      if(hero) hero.classList.add("show");
-      if(music) music.play().catch(()=>{});
-    });
+toggle.onclick=()=>{
+  if(music.paused){
+    music.play();
+    toggle.textContent="🔊";
+  }else{
+    music.pause();
+    toggle.textContent="🔇";
   }
+};
 
-  /* =========================
-     GUEST NAME
-  ========================= */
-  const params = new URLSearchParams(window.location.search);
-  const guest = params.get("to");
-  if(guest){
-    document.getElementById("guest").innerText =
-      guest.replace(/\+/g," ");
-  }
+/* NAMA TAMU */
+const params=new URLSearchParams(location.search);
+const guest=params.get("to");
+if(guest){
+  document.getElementById("guest").innerText=guest.replace(/\+/g," ");
+}
 
-  /* =========================
-     COUNTDOWN
-  ========================= */
-  const target = new Date("2026-01-12T09:00:00").getTime();
-  const countdown = document.getElementById("countdown");
+/* COUNTDOWN */
+const target=new Date("2026-01-12T09:00:00").getTime();
+setInterval(()=>{
+  const cd=document.getElementById("countdown");
+  const diff=target-Date.now();
+  if(diff<=0){cd.innerText="Hari Bahagia 🤍";return;}
+  cd.innerText=
+  `${Math.floor(diff/86400000)} Hari ${Math.floor(diff/3600000)%24} Jam ${Math.floor(diff/60000)%60} Menit`;
+},1000);
 
-  setInterval(()=>{
-    const diff = target - Date.now();
-    if(diff <= 0){
-      countdown.innerText = "Hari Bahagia 🤍";
-      return;
-    }
-    const d = Math.floor(diff / 86400000);
-    const h = Math.floor((diff / 3600000) % 24);
-    const m = Math.floor((diff / 60000) % 60);
-    countdown.innerText =
-      `${d} Hari ${h} Jam ${m} Menit`;
-  },1000);
+/* COMMENT */
+const form=document.getElementById("commentForm");
+const list=document.getElementById("commentList");
 
-  /* =========================
-     MUSIC TOGGLE BUTTON
-  ========================= */
-  const btn = document.createElement("div");
-  btn.className="music-btn";
-  btn.innerHTML="🔊";
-  document.body.appendChild(btn);
-
-  let playing=true;
-  btn.addEventListener("click",()=>{
-    if(!music) return;
-    if(playing){
-      music.pause();
-      btn.innerHTML="🔇";
-    }else{
-      music.play().catch(()=>{});
-      btn.innerHTML="🔊";
-    }
-    playing=!playing;
+function loadComments(){
+  const data=JSON.parse(localStorage.getItem("comments"))||[];
+  list.innerHTML="";
+  data.forEach(c=>{
+    const d=document.createElement("div");
+    d.innerHTML=`<b>${c.name}</b><p>${c.message}</p>`;
+    d.style.marginBottom="12px";
+    list.appendChild(d);
   });
+}
+form.onsubmit=e=>{
+  e.preventDefault();
+  const data=JSON.parse(localStorage.getItem("comments"))||[];
+  data.push({name:name.value,message:message.value});
+  localStorage.setItem("comments",JSON.stringify(data));
+  form.reset();
+  loadComments();
+};
+loadComments();
+
+/* SCROLL REVEAL */
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting) e.target.classList.add("show");
+  });
+},{threshold:.2});
+document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
 
 });
