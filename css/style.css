@@ -394,3 +394,37 @@ divider-animate{
   }
 }
 
+/* ======================
+   DIVIDER UMUM
+====================== */
+.divider{
+  width:100%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  margin:32px 0;
+}
+
+/* DIVIDER 1 */
+.divider-1{
+  height:2px;
+  max-width:220px;
+  background:linear-gradient(90deg,#f5d48e,#d6b15e,#f5d48e);
+}
+
+/* DIVIDER 2 */
+.divider-2{
+  gap:16px;
+}
+.divider-2 span{
+  color:#d6b15e;
+  font-size:14px;
+}
+
+/* DIVIDER 3 */
+.divider-3{
+  font-family:'Playfair Display',serif;
+  font-size:14px;
+  color:#d6b15e;
+  letter-spacing:1px;
+}
