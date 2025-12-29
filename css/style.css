@@ -425,8 +425,9 @@ footer{
   color: #111;
   cursor: pointer;
 } 
+
 /* =========================
-   SECTION BACKGROUND SYSTEM
+   SECTION BACKGROUND – CERAH & MODERN
 ========================= */
 
 /* HERO */
@@ -434,44 +435,49 @@ footer{
   background: linear-gradient(
     to bottom,
     #0b2e59,
-    #123b6e
+    #153f75
   );
-  color: #ffffff;
+  color:#fff;
 }
 
 /* PROFILE */
 .profile{
-  background: #ffffff;
+  background:#ffffff;
 }
 
 /* GALLERY */
 .gallery{
-  background: #f6f1ea; /* champagne nude */
+  background:#fdfaf5; /* champagne cream */
 }
 
 /* EVENT */
 .event{
-  background: #faf9f7; /* warm ivory */
+  background:#faf9f7; /* warm ivory */
 }
 
 /* RSVP */
 .rsvp{
-  background: #ffffff;
+  background:#ffffff;
 }
 
 /* AMPLOP DIGITAL */
 .gift{
-  background: #f6f1ea;
+  background:#f7f3ec; /* soft champagne */
 }
 
-/* SAWERAN QRIS */
+/* SAWERAN */
 .saweran{
-  background: #faf9f7;
+  background:#faf9f7;
 }
 
 /* KOMENTAR */
 .comment{
-  background: #ffffff;
+  background:#ffffff;
+}
+
+/* FOOTER */
+footer{
+  background:linear-gradient(to top,#020617,#020617);
 }
 
 /* FOOTER */
@@ -515,4 +521,18 @@ section > *{
 .comment{
   max-width: none;
   margin: 0;
+}
+/* =========================
+   SECTION SCROLL ANIMATION
+========================= */
+
+.section-animate{
+  opacity:0;
+  transform:translateY(40px);
+  transition:all 0.9s ease;
+}
+
+.section-animate.show{
+  opacity:1;
+  transform:translateY(0);
 }
