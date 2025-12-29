@@ -93,32 +93,33 @@ body{
 }
 
 /* =========================
-   GALLERY – GOLD FRAME
+   GALLERY – GOLD FRAME SNAP
 ========================= */
-.gallery {
+
+.gallery{
   padding: 60px 20px;
   text-align: center;
 }
 
-.gallery-wrapper {
-  overflow: hidden;
+/* WRAPPER = SCROLL SNAP */
+.gallery-wrapper{
+  overflow-x: auto;
   width: 100%;
-  position: relative;
-  padding: 0 10%;
-}
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
 }
 
-.gallery-track {
+/* TRACK */
+.gallery-track{
   display: flex;
   gap: 18px;
-  transition: transform 0.35s ease;
-  touch-action: pan-y;
+  padding: 10px 0;
 }
 
-.gallery-item {
-  min-width: 80vw;
-  max-width: 80vw;
-  margin: auto;
+/* ITEM */
+.gallery-item{
+  flex: 0 0 80vw;      /* 👈 penting */
+  scroll-snap-align: center;
   padding: 10px;
   border-radius: 22px;
   background: linear-gradient(
@@ -132,34 +133,42 @@ body{
     inset 0 0 20px rgba(255,255,255,.25);
   animation: goldGlow 4s ease-in-out infinite;
 }
+.gallery-item{
+  transition: transform .4s ease;
+}
 
-.gallery-item img {
+.gallery-item:active{
+  transform: scale(1.03);
+}
+
+/* IMAGE */
+.gallery-item img{
   width: 100%;
   display: block;
   border-radius: 16px;
   background: #000;
 }
 
-/* GOLD PULSE */
-@keyframes goldGlow {
-  0% {
+/* GOLD GLOW */
+@keyframes goldGlow{
+  0%{
     box-shadow: 0 0 18px rgba(214,177,94,.4);
   }
-  50% {
+  50%{
     box-shadow: 0 0 40px rgba(214,177,94,.9);
   }
-  100% {
+  100%{
     box-shadow: 0 0 18px rgba(214,177,94,.4);
   }
 }
 
 /* DESKTOP */
-@media (min-width: 768px) {
-  .gallery-item {
-    min-width: 45%;
-    max-width: 45%;
+@media (min-width: 768px){
+  .gallery-item{
+    flex: 0 0 45%;
   }
 }
+ 
 /* EVENT */
 .event{text-align:center;padding:60px 20px}
 .event a{
