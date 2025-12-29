@@ -1,10 +1,58 @@
-*{margin:0;padding:0;box-sizing:border-box}
+/* =====================================================
+   ROOT COLOR SYSTEM
+===================================================== */
+:root{
+  --bg-dark:#020617;
+  --bg-deep:#071a33;
+  --bg-blue:#0b2e59;
+  --bg-light:#153f75;
+
+  --gold:#d6b15e;
+  --gold-soft:#f5d48e;
+  --text:#ffffff;
+}
+
+/* =====================================================
+   RESET & BASE
+===================================================== */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
 body{
   font-family:'Poppins',sans-serif;
-  background:#020617;
-  color:#fff;
+  background:linear-gradient(
+    120deg,
+    var(--bg-dark),
+    var(--bg-deep),
+    var(--bg-blue),
+    var(--bg-deep),
+    var(--bg-dark)
+  );
+  background-size:400% 400%;
+  animation:gradientFlow 30s ease infinite;
+  color:var(--text);
+  overflow-x:hidden;
 }
-/* WATERMARK */
+
+/* =====================================================
+   GRADIENT ANIMATION
+===================================================== */
+@keyframes gradientFlow{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+
+/* =====================================================
+   WATERMARK
+===================================================== */
 .watermark{
   position:fixed;
   bottom:10px;
@@ -13,180 +61,310 @@ body{
   opacity:.25;
   z-index:999;
   pointer-events:none;
-/* OPENING */
+}
+
+/* =====================================================
+   SECTION BASE
+===================================================== */
+section{
+  width:100%;
+  padding:90px 20px;
+  position:relative;
+}
+
+section > *{
+  max-width:1100px;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+/* =====================================================
+   AUTO GRADIENT PER SECTION
+===================================================== */
+section:nth-of-type(1){
+  background:linear-gradient(120deg,var(--bg-blue),var(--bg-dark));
+  background-size:400% 400%;
+  animation:gradientFlow 28s ease infinite;
+}
+
+section:nth-of-type(2){
+  background:linear-gradient(120deg,var(--bg-deep),var(--bg-blue));
+  background-size:400% 400%;
+  animation:gradientFlow 30s ease infinite;
+}
+
+section:nth-of-type(3){
+  background:linear-gradient(120deg,var(--bg-blue),var(--bg-light));
+  background-size:400% 400%;
+  animation:gradientFlow 32s ease infinite;
+}
+
+section:nth-of-type(4){
+  background:linear-gradient(120deg,var(--bg-light),var(--bg-deep));
+  background-size:400% 400%;
+  animation:gradientFlow 34s ease infinite;
+}
+
+section:nth-of-type(5){
+  background:linear-gradient(120deg,var(--bg-deep),var(--bg-dark));
+  background-size:400% 400%;
+  animation:gradientFlow 36s ease infinite;
+}
+
+/* =====================================================
+   AUTO GOLD DIVIDER (SEMUA SECTION)
+===================================================== */
+section::after{
+  content:"";
+  display:block;
+  width:65%;
+  height:2px;
+  margin:80px auto 0;
+  background:linear-gradient(
+    90deg,
+    transparent,
+    var(--gold),
+    var(--gold-soft),
+    var(--gold),
+    transparent
+  );
+  background-size:300% 300%;
+  animation:gradientFlow 6s linear infinite;
+  opacity:.6;
+}
+
+/* =====================================================
+   OPENING
+===================================================== */
 .opening{
   min-height:100vh;
-  background:radial-gradient(circle at top,#111827,#000);
   display:flex;
   flex-direction:column;
   justify-content:center;
   align-items:center;
   text-align:center;
 }
+
 .opening h1{
   font-family:'Playfair Display',serif;
   font-size:38px;
-  background:linear-gradient(90deg,#f5d48e,#d6b15e);
+  background:linear-gradient(90deg,var(--gold-soft),var(--gold));
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
 }
+
 .opening button{
   margin-top:28px;
   padding:14px 44px;
   border:none;
   border-radius:999px;
-  background:linear-gradient(90deg,#f5d48e,#d6b15e);
+  background:linear-gradient(90deg,var(--gold-soft),var(--gold));
+  font-weight:600;
+  cursor:pointer;
 }
 
-/* HERO */
+/* =====================================================
+   HERO
+===================================================== */
 .hero{
-  padding:100px 20px;
   text-align:center;
-  background:linear-gradient(to bottom,#020617,#0b2e59);
 }
+
 .hero h1{
   font-family:'Playfair Display',serif;
   font-size:44px;
 }
 
-/* BISMILLAH */
+#countdown{
+  margin-top:14px;
+  opacity:.9;
+}
+
+/* =====================================================
+   BISMILLAH
+===================================================== */
 .bismillah-text{
   font-family:'Amiri',serif;
-  font-size:58px;
+  font-size:56px;
   fill:url(#goldFlow);
   animation:goldMove 6s linear infinite;
 }
+
 @keyframes goldMove{
   from{fill-position:0%}
   to{fill-position:200%}
 }
 
-/* DIVIDER */
-.divider{
-  width:65%;
-  height:2px;
-  margin:50px auto;
-  background:linear-gradient(90deg,transparent,#d6b15e,transparent);
-}
-
-/* PROFILE */
+/* =====================================================
+   PROFILE
+===================================================== */
 .profile{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:22px;
-  padding:60px 20px;
+  gap:26px;
 }
+
 .card{
   border:1px solid rgba(214,177,94,.3);
-  border-radius:22px;
-  padding:34px;
+  border-radius:24px;
+  padding:38px;
   text-align:center;
-  box-shadow:0 0 50px rgba(214,177,94,.25);
+  background:rgba(0,0,0,.35);
+  backdrop-filter:blur(6px);
+  box-shadow:0 0 55px rgba(214,177,94,.25);
 }
+
 @media(max-width:768px){
   .profile{grid-template-columns:1fr}
 }
 
-/* GALLERY */
+/* =====================================================
+   GALLERY
+===================================================== */
 .gallery{
-  padding:60px 20px;
   text-align:center;
 }
+
 .gallery-track{
   display:flex;
-  gap:16px;
+  gap:18px;
   overflow-x:auto;
+  padding-bottom:10px;
 }
+
+.gallery-track::-webkit-scrollbar{display:none;}
+
 .gallery-track img{
   height:240px;
   border-radius:20px;
+  box-shadow:0 14px 40px rgba(0,0,0,.6);
 }
 
-/* EVENT */
+/* =====================================================
+   EVENT
+===================================================== */
 .event{
-  padding:60px 20px;
   text-align:center;
 }
+
 .event a{
   display:inline-block;
-  margin-top:18px;
-  padding:14px 34px;
-  background:linear-gradient(90deg,#f5d48e,#d6b15e);
-  color:#000;
+  margin-top:22px;
+  padding:14px 36px;
   border-radius:999px;
+  background:linear-gradient(90deg,var(--gold-soft),var(--gold));
+  color:#000;
+  text-decoration:none;
+  font-weight:600;
 }
 
-/* QRIS EMAS */
+/* =====================================================
+   QRIS GOLD ANIMATION
+===================================================== */
 .qris-section{
   text-align:center;
-  padding:60px 20px;
 }
+
 .qris-frame{
   margin:30px auto;
   width:260px;
   padding:16px;
-  border-radius:20px;
-  background:linear-gradient(120deg,#d6b15e,#fff3c4,#d6b15e);
+  border-radius:22px;
+  background:linear-gradient(
+    120deg,
+    var(--gold),
+    #fff3c4,
+    var(--gold)
+  );
   animation:qrisGlow 4s linear infinite;
 }
+
 .qris-frame img{
   width:100%;
-  border-radius:12px;
+  border-radius:14px;
 }
+
 @keyframes qrisGlow{
   0%{box-shadow:0 0 20px rgba(214,177,94,.4)}
-  50%{box-shadow:0 0 50px rgba(214,177,94,.9)}
+  50%{box-shadow:0 0 55px rgba(214,177,94,.95)}
   100%{box-shadow:0 0 20px rgba(214,177,94,.4)}
 }
 
-/* COMMENT */
+/* =====================================================
+   COMMENT
+===================================================== */
 .comment{
-  padding:60px 20px;
+  text-align:center;
 }
+
 .comment form{
-  max-width:500px;
+  max-width:520px;
   margin:auto;
   display:flex;
   flex-direction:column;
-  gap:12px;
+  gap:14px;
 }
-.comment input,.comment textarea{
+
+.comment input,
+.comment textarea{
   padding:14px;
-  border-radius:12px;
+  border-radius:14px;
   border:none;
 }
+
 .comment button{
   padding:14px;
   border:none;
   border-radius:999px;
-  background:linear-gradient(90deg,#f5d48e,#d6b15e);
+  background:linear-gradient(90deg,var(--gold-soft),var(--gold));
+  font-weight:600;
 }
 
-/* FOOTER */
+/* =====================================================
+   FOOTER
+===================================================== */
 footer{
   background:#000;
   padding:40px;
   text-align:center;
 }
 
-/* MUSIC */
+/* =====================================================
+   MUSIC BUTTON
+===================================================== */
 .music-btn{
   position:fixed;
   bottom:20px;
   right:20px;
-  background:#d6b15e;
+  background:var(--gold);
   border:none;
   padding:14px;
   border-radius:50%;
+  z-index:999;
+  cursor:pointer;
 }
 
-/* REVEAL */
+/* =====================================================
+   SCROLL REVEAL
+===================================================== */
 .reveal{
   opacity:0;
   transform:translateY(40px);
   transition:1s ease;
 }
+
 .reveal.show{
   opacity:1;
   transform:none;
 }
+
+/* =====================================================
+   MOBILE OPTIMIZATION
+===================================================== */
+@media(max-width:768px){
+  section{
+    animation:none;
+    background-size:cover;
+  }
+}
+
