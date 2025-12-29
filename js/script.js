@@ -1,153 +1,100 @@
-function openInvite(){
-  document.getElementById("opening").style.display = "none";
-  document.getElementById("main").style.display = "block";
-
-  // scroll ke atas dulu
+kfunction openInvite(){
+  document.getElementById("opening").style.display="none";
+  document.getElementById("main").style.display="block";
   window.scrollTo(0,0);
 
-  // HERO animation
-  const hero = document.querySelector(".hero");
-  if(hero){
-    setTimeout(() => {
-      hero.classList.add("show");
-    }, 300);
-  }
+  const hero=document.querySelector(".hero");
+  if(hero) setTimeout(()=>hero.classList.add("show"),300);
 
-  // play music
-  const music = document.getElementById("music");
-  if(music){
-    music.play().catch(()=>{});
-  }
+  const music=document.getElementById("music");
+  if(music) music.play().catch(()=>{});
 }
 
-// NAMA TAMU
-const params = new URLSearchParams(window.location.search);
-const guest = params.get("to");
+/* NAMA TAMU */
+const params=new URLSearchParams(window.location.search);
+const guest=params.get("to");
 if(guest){
-  document.getElementById("guest").innerText = guest.replace(/\+/g," ");
+  document.getElementById("guest").innerText=guest.replace(/\+/g," ");
 }
 
-// COUNTDOWN
-const targetDate = new Date("2026-01-12T09:00:00").getTime();
-const countdown = document.getElementById("countdown");
+/* COUNTDOWN */
+const target=new Date("2026-01-12T09:00:00").getTime();
+const countdown=document.getElementById("countdown");
 
 setInterval(()=>{
-  const now = new Date().getTime();
-  const diff = targetDate - now;
-
-  if(diff <= 0){
-    countdown.innerHTML = "Hari Bahagia Telah Tiba 🤍";
+  const diff=target-new Date().getTime();
+  if(diff<=0){
+    countdown.innerText="Hari Bahagia Telah Tiba 🤍";
     return;
   }
-
-  const d = Math.floor(diff / (1000*60*60*24));
-  const h = Math.floor((diff / (1000*60*60)) % 24);
-  const m = Math.floor((diff / (1000*60)) % 60);
-
-  countdown.innerHTML = `${d} Hari ${h} Jam ${m} Menit`;
+  const d=Math.floor(diff/86400000);
+  const h=Math.floor((diff/3600000)%24);
+  const m=Math.floor((diff/60000)%60);
+  countdown.innerText=`${d} Hari ${h} Jam ${m} Menit`;
 },1000);
 
-// AUTO SCROLL GALLERY (AMAN)
-const gallery = document.getElementById("gallery");
-let scrollPos = 0;
-
+/* GALLERY AUTO SLIDE */
+const gallery=document.getElementById("gallery");
+let pos=0;
 setInterval(()=>{
   if(!gallery) return;
+  pos+=240;
+  if(pos>=gallery.scrollWidth-gallery.clientWidth) pos=0;
+  gallery.scrollTo({left:pos,behavior:"smooth"});
+},3500);
 
-  scrollPos += 240;
-  if(scrollPos >= gallery.scrollWidth - gallery.clientWidth){
-    scrollPos = 0;
-  }
-
-  gallery.scrollTo({
-    left: scrollPos,
-    behavior: "smooth"
-  });
-}, 3500);
-// PROFILE CARD ANIMATION ON SCROLL
-const profileCards = document.querySelectorAll(".profile .card");
-
-const showProfileCards = () => {
-  profileCards.forEach(card => {
-    const cardTop = card.getBoundingClientRect().top;
-    const triggerPoint = window.innerHeight - 100;
-
-    if(cardTop < triggerPoint){
-      card.classList.add("show");
+/* PROFILE CARD ANIMATION */
+const cards=document.querySelectorAll(".profile .card");
+window.addEventListener("scroll",()=>{
+  cards.forEach(c=>{
+    if(c.getBoundingClientRect().top<window.innerHeight-100){
+      c.classList.add("show");
     }
   });
-};
+});
 
-window.addEventListener("scroll", showProfileCards);
-// COPY SAWERAN
-function copyText(text){
-  navigator.clipboard.writeText(text);
+/* COPY SAWERAN */
+function copyText(t){
+  navigator.clipboard.writeText(t);
   alert("Nomor berhasil disalin 🤍");
 }
 
-// KOMENTAR LOCAL STORAGE
-const form = document.getElementById("commentForm");
-const list = document.getElementById("commentList");
+/* KOMENTAR */
+const form=document.getElementById("commentForm");
+const list=document.getElementById("commentList");
 
 function loadComments(){
-  const data = JSON.parse(localStorage.getItem("comments")) || [];
-  list.innerHTML = "";
-  data.reverse().forEach(c => {
-    const div = document.createElement("div");
-    div.className = "comment-item";
-    div.innerHTML = `<strong>${c.name}</strong><p>${c.message}</p>`;
-    list.appendChild(div);
+  const data=JSON.parse(localStorage.getItem("comments"))||[];
+  list.innerHTML="";
+  data.reverse().forEach(c=>{
+    const d=document.createElement("div");
+    d.className="comment-item";
+    d.innerHTML=`<strong>${c.name}</strong><p>${c.message}</p>`;
+    list.appendChild(d);
   });
 }
 
-form.addEventListener("submit", e => {
-  e.preventDefault();
-
-  const name = document.getElementById("name").value;
-  const message = document.getElementById("message").value;
-
-  const data = JSON.parse(localStorage.getItem("comments")) || [];
-  data.push({ name, message });
-
-  localStorage.setItem("comments", JSON.stringify(data));
-  form.reset();
-  loadComments();
-});
-
+if(form){
+  form.addEventListener("submit",e=>{
+    e.preventDefault();
+    const name=document.getElementById("name").value;
+    const msg=document.getElementById("message").value;
+    const data=JSON.parse(localStorage.getItem("comments"))||[];
+    data.push({name,message:msg});
+    localStorage.setItem("comments",JSON.stringify(data));
+    form.reset();
+    loadComments();
+  });
+}
 loadComments();
-/* =========================
-   SECTION SCROLL REVEAL
-========================= */
-const sections = document.querySelectorAll("section");
 
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if(entry.isIntersecting){
-      entry.target.classList.add("show");
-    }
+/* SCROLL REVEAL */
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting) e.target.classList.add("show");
   });
-},{
-  threshold:0.2
-});
+},{threshold:.2});
 
-sections.forEach(section=>{
-  section.classList.add("section-animate");
-  observer.observe(section);
-});
-
-/* =========================
-   DIVIDER SCROLL ANIMATION
-========================= */
-const dividers = document.querySelectorAll(".divider-animate");
-
-const dividerObserver = new IntersectionObserver(entries=>{
-  entries.forEach(entry=>{
-    if(entry.isIntersecting){
-      entry.target.classList.add("show");
-    }
-  });
-},{ threshold:0.3 });
-
-dividers.forEach(divider=>{
-  dividerObserver.observe(divider);
+document.querySelectorAll("section,.divider-animate").forEach(el=>{
+  observer.observe(el);
 });

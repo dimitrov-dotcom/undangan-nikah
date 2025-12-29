@@ -1,4 +1,6 @@
-/* RESET */
+/* =========================
+   RESET
+========================= */
 *{
   margin:0;
   padding:0;
@@ -6,26 +8,21 @@
 }
 
 body{
-  font-family: 'Poppins', sans-serif;
-  background: #faf9f7; /* Warm Ivory - REKOMENDASI */
-  color: #1f2937;
-  overflow-x: hidden;
+  font-family:'Poppins',sans-serif;
+  background:#faf9f7;
+  color:#1f2937;
+  overflow-x:hidden;
 }
 
 /* =========================
-   OPENING – MODERN WEDDING PREMIUM (OPTION 3)
+   OPENING
 ========================= */
 .opening{
   min-height:100vh;
   background:
-    linear-gradient(
-      rgba(15,23,42,0.65),
-      rgba(15,23,42,0.65)
-    ),
+    linear-gradient(rgba(15,23,42,.65),rgba(15,23,42,.65)),
     url("../assets/gallery/nikah4.png") center/cover no-repeat;
-
-  color:#ffffff;
-
+  color:#fff;
   display:flex;
   flex-direction:column;
   justify-content:center;
@@ -41,16 +38,10 @@ body{
 }
 
 .opening h1{
-  font-family:'Playfair Display', serif;
+  font-family:'Playfair Display',serif;
   font-size:36px;
   margin:14px 0;
-
-  background:linear-gradient(
-    90deg,
-    #f5d48e,
-    #d6b15e,
-    #f5d48e
-  );
+  background:linear-gradient(90deg,#f5d48e,#d6b15e,#f5d48e);
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
 }
@@ -59,7 +50,6 @@ body{
   max-width:320px;
   font-size:14px;
   line-height:1.7;
-  color:#e5e7eb;
 }
 
 .opening button{
@@ -68,32 +58,44 @@ body{
   border:none;
   border-radius:999px;
   background:linear-gradient(90deg,#f5d48e,#d6b15e);
-  color:#111827;
   font-weight:600;
-  font-size:14px;
   cursor:pointer;
-  transition:all .3s ease;
-}
-
-.opening button:hover{
-  transform:scale(1.05);
-  box-shadow:0 18px 40px rgba(214,177,94,.45);
 }
 
 /* =========================
-   HERO FIX (TOP NOT CUT)
+   SECTION BASE
+========================= */
+section{
+  width:100%;
+  padding:70px 20px;
+  transition:background .4s ease;
+}
+
+section > *{
+  max-width:900px;
+  margin:auto;
+}
+
+/* =========================
+   HERO
 ========================= */
 .hero{
-  background:#0b2e59;
-  color:#ffffff;
-  padding:100px 20px 80px; /* ⬅️ INI KUNCI */
+  background:linear-gradient(to bottom,#0b2e59,#153f75);
+  color:#fff;
   text-align:center;
+  opacity:0;
+  transform:translateY(30px);
+  transition:all 1s ease;
+}
+
+.hero.show{
+  opacity:1;
+  transform:none;
 }
 
 .hero h1{
-  font-family:'Playfair Display', serif;
+  font-family:'Playfair Display',serif;
   font-size:36px;
-  margin-bottom:10px;
 }
 
 .hero p{
@@ -103,20 +105,13 @@ body{
 
 #countdown{
   margin-top:14px;
-  font-size:14px;
-  letter-spacing:.5px;
 }
 
-#countdown{
-  margin-top:10px;
-  font-size:14px;
-}
-
-/* PROFILE */
+/* =========================
+   PROFILE
+========================= */
 .profile{
-  max-width:800px;
-  margin:60px auto;
-  padding:0 20px;
+  background:#fff;
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:20px;
@@ -128,11 +123,21 @@ body{
   border-radius:20px;
   text-align:center;
   box-shadow:0 10px 30px rgba(0,0,0,.08);
+  opacity:0;
+  transform:translateY(40px);
+  transition:all .8s ease;
 }
 
-/* GALLERY */
+.card.show{
+  opacity:1;
+  transform:none;
+}
+
+/* =========================
+   GALLERY
+========================= */
 .gallery{
-  padding:60px 0;
+  background:#fdfaf5;
 }
 
 .gallery h2{
@@ -146,26 +151,58 @@ body{
   gap:16px;
   overflow-x:auto;
   padding:0 20px 20px;
-  scroll-behavior:smooth;
 }
 
-.gallery-wrapper::-webkit-scrollbar{
-  display:none;
-}
+.gallery-wrapper::-webkit-scrollbar{display:none;}
 
 .gallery-wrapper img{
   width:220px;
   height:300px;
   object-fit:cover;
   border-radius:18px;
-  flex-shrink:0;
   box-shadow:0 10px 25px rgba(0,0,0,.12);
 }
 
-/* EVENT */
+/* =========================
+   DIVIDER ISLAMI
+========================= */
+.divider-wrap{
+  display:flex;
+  justify-content:center;
+  padding:40px 0;
+}
+
+.divider{
+  width:260px;
+}
+
+.divider path{
+  stroke-dasharray:160;
+  stroke-dashoffset:160;
+  animation:shimmer 3.5s linear infinite;
+}
+
+@keyframes shimmer{
+  to{stroke-dashoffset:-160;}
+}
+
+.divider-animate{
+  opacity:0;
+  transform:translateY(20px);
+  transition:.8s ease;
+}
+
+.divider-animate.show{
+  opacity:1;
+  transform:none;
+}
+
+/* =========================
+   EVENT
+========================= */
 .event{
+  background:#faf9f7;
   text-align:center;
-  padding:60px 20px;
 }
 
 .event a{
@@ -175,108 +212,23 @@ body{
   border-radius:999px;
   background:linear-gradient(90deg,#f5d48e,#d6b15e);
   text-decoration:none;
-  color:#111;
   font-weight:600;
+  color:#111;
 }
 
-/* RSVP */
+/* =========================
+   RSVP
+========================= */
 .rsvp{
-  text-align:center;
-  padding:60px 20px;
-}
-
-/* FOOTER */
-footer{
-  background:#020617;
-  color:#fff;
-  padding:40px 20px;
-  text-align:center;
-}
-
-/* RESPONSIVE */
-@media(max-width:768px){
-  .profile{
-    grid-template-columns:1fr;
-  }
-}
-/* =========================
-   HERO ENTER ANIMATION
-========================= */
-.hero{
-  opacity:0;
-  transform:translateY(30px);
-  transition:opacity 1s ease, transform 1s ease;
-}
-
-.hero.show{
-  opacity:1;
-  transform:translateY(0);
-}
-
-.hero h1,
-.hero p,
-#countdown{
-  opacity:0;
-  transform:translateY(20px);
-  transition:all .8s ease;
-}
-
-.hero.show h1{
-  transition-delay:.2s;
-  opacity:1;
-  transform:translateY(0);
-}
-
-.hero.show p{
-  transition-delay:.4s;
-  opacity:1;
-  transform:translateY(0);
-}
-
-.hero.show #countdown{
-  transition-delay:.6s;
-  opacity:1;
-  transform:translateY(0);
-}
-/* =========================
-   PROFILE CARD ANIMATION
-========================= */
-.profile .card{
-  opacity:0;
-  transform:translateY(40px);
-  transition:all .8s ease;
-}
-
-.profile .card.show{
-  opacity:1;
-  transform:translateY(0);
-}
-
-/* delay otomatis per card */
-.profile .card:nth-child(1){
-  transition-delay:.2s;
-}
-
-.profile .card:nth-child(2){
-  transition-delay:.5s;
-}
-/* =========================
-   SAWERAN / AMPL0P DIGITAL
-========================= */
-.gift{
   background:#fff;
+  text-align:center;
 }
 
-.gift h2{
-  font-family:'Playfair Display', serif;
-  color:#0b2e59;
-}
-
-.gift p{
-  max-width:360px;
-  margin:10px auto 20px;
-  font-size:14px;
-}
+/* =========================
+   GIFT & SAWERAN
+========================= */
+.gift{background:#f7f3ec;text-align:center;}
+.saweran{background:#faf9f7;text-align:center;}
 
 .gift-box{
   display:flex;
@@ -291,290 +243,65 @@ footer{
   border:none;
   background:linear-gradient(90deg,#f5d48e,#d6b15e);
   font-weight:600;
-  cursor:pointer;
 }
 
-.gift small{
-  display:block;
-  margin-top:12px;
-  font-size:12px;
-  opacity:.7;
+.qris-box{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+
+.qris-box img{
+  width:260px;
+  max-width:90%;
+  border-radius:16px;
+  box-shadow:0 15px 35px rgba(0,0,0,.15);
 }
 
 /* =========================
-   KOMENTAR
+   COMMENT
 ========================= */
 .comment{
-  background:#f8fafc;
-}
-
-.comment h2{
-  font-family:'Playfair Display', serif;
-  margin-bottom:20px;
+  background:#fff;
+  text-align:center;
 }
 
 #commentForm{
-  max-width:400px;
-  margin:0 auto 30px;
-  display:flex;
-  flex-direction:column;
-  gap:12px;
-}
-
-#commentForm input,
-#commentForm textarea{
-  padding:12px;
-  border-radius:12px;
-  border:1px solid #e5e7eb;
-  font-size:14px;
-}
-
-#commentForm button{
-  padding:14px;
-  border:none;
-  border-radius:999px;
-  background:linear-gradient(90deg,#f5d48e,#d6b15e);
-  font-weight:600;
-}
-
-#commentList{
-  max-width:500px;
+  max-width:420px;
   margin:auto;
   display:flex;
   flex-direction:column;
   gap:14px;
 }
 
-.comment-item{
-  background:#fff;
-  padding:14px 18px;
-  border-radius:14px;
-  box-shadow:0 8px 20px rgba(0,0,0,.05);
-}
-
-.comment-item strong{
-  display:block;
-  margin-bottom:6px;
-  color:#0b2e59;
-}
-.gift,
-.saweran,
-.comment {
-  text-align: center;
-}
-.gift-box {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 14px;
-  flex-wrap: wrap;
-  margin: 20px auto;
-}
-
-.gift-box button {
-  padding: 12px 24px;
-  border-radius: 999px;
-  border: none;
-  font-weight: 600;
-  cursor: pointer;
-  background: linear-gradient(90deg, #f5d48e, #d6b15e);
-  color: #111;
-}
-.qris-box {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin-top: 20px;
-}
-
-.qris-box img {
-  width: 260px;
-  max-width: 90%;
-  margin: 14px auto;
-  border-radius: 16px;
-  box-shadow: 0 15px 35px rgba(0,0,0,.15);
-}
-
-.qris-box p {
-  font-size: 14px;
-  color: #64748b;
-}#commentForm {
-  max-width: 420px;
-  margin: 20px auto;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-
 #commentForm input,
-#commentForm textarea {
-  width: 100%;
-  padding: 14px 16px;
-  border-radius: 14px;
-  border: 1px solid #e5e7eb;
-  font-size: 14px;
+#commentForm textarea{
+  padding:14px;
+  border-radius:14px;
+  border:1px solid #e5e7eb;
 }
 
-#commentForm button {
-  padding: 14px;
-  border-radius: 999px;
-  border: none;
-  font-weight: 600;
-  background: linear-gradient(90deg, #f5d48e, #d6b15e);
-  color: #111;
-  cursor: pointer;
-} 
+#commentForm button{
+  border:none;
+  border-radius:999px;
+  padding:14px;
+  background:linear-gradient(90deg,#f5d48e,#d6b15e);
+  font-weight:600;
+}
 
 /* =========================
-   SECTION BACKGROUND – CERAH & MODERN
+   FOOTER
 ========================= */
-
-/* HERO */
-.hero{
-  background: linear-gradient(
-    to bottom,
-    #0b2e59,
-    #153f75
-  );
+footer{
+  background:#020617;
   color:#fff;
+  padding:40px 20px;
+  text-align:center;
 }
 
-/* PROFILE */
-.profile{
-  background:#ffffff;
-}
-
-/* GALLERY */
-.gallery{
-  background:#fdfaf5; /* champagne cream */
-}
-
-/* EVENT */
-.event{
-  background:#faf9f7; /* warm ivory */
-}
-
-/* RSVP */
-.rsvp{
-  background:#ffffff;
-}
-
-/* AMPLOP DIGITAL */
-.gift{
-  background:#f7f3ec; /* soft champagne */
-}
-
-/* SAWERAN */
-.saweran{
-  background:#faf9f7;
-}
-
-/* KOMENTAR */
-.comment{
-  background:#ffffff;
-}
-
-/* FOOTER */
-footer{
-  background:linear-gradient(to top,#020617,#020617);
-}
-
-/* FOOTER */
-footer{
-  background: linear-gradient(
-    to top,
-    #020617,
-    #020617
-  );
-}
-section{
-  transition: background 0.4s ease;
-}
 /* =========================
-   FULL WIDTH SECTION FIX
+   RESPONSIVE
 ========================= */
-
-/* Semua section full background */
-section{
-  width: 100%;
-  padding: 70px 20px;
+@media(max-width:768px){
+  .profile{grid-template-columns:1fr;}
 }
-
-/* Container isi rapi di tengah */
-section > *{
-  max-width: 900px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-/* Khusus profile (grid) */
-.profile{
-  max-width: none;     /* ⬅️ INI KUNCI */
-  margin: 0;
-  background: #ffffff;
-}
-
-/* Gift / Saweran / Comment */
-.gift,
-.saweran,
-.comment{
-  max-width: none;
-  margin: 0;
-}
-/* =========================
-   SECTION SCROLL ANIMATION
-========================= */
-
-.section-animate{
-  opacity:0;
-  transform:translateY(40px);
-  transition:all 0.9s ease;
-}
-
-.section-animate.show{
-  opacity:1;
-  transform:translateY(0);
-}
-/* =========================
-   ISLAMIC GEOMETRIC DIVIDER
-========================= */
-.divider-wrap{
-  width:100%;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  padding:40px 0;
-  background:transparent;
-}
-
-.divider{
-  width:260px;
-  max-width:80%;
-}
-
-/* shimmer animation */
-.divider path{
-  stroke-dasharray: 160;
-  stroke-dashoffset: 160;
-  animation: shimmer 3.5s linear infinite;
-  opacity:.9;
-}
-
-@keyframes shimmer{
-  0%   { stroke-dashoffset: 160; }
-  100% { stroke-dashoffset: -160; }
-}
-
-/* scroll reveal */
-.divider-animate{
-  opacity:0;
-  transform:translateY(20px);
-  transition:all .8s ease;
-}
-
-.divider-animate.show{
-  opacity:1;
-  transform:translateY(0);
-}
-
