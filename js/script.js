@@ -1,167 +1,71 @@
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded",()=>{
 
-  /* ===============================
-     OPEN INVITATION
-  =============================== */
-  const openBtn   = document.getElementById("openBtn");
-  const opening   = document.getElementById("opening");
-  const main      = document.getElementById("main");
-  const hero      = document.getElementById("hero");
-  const music     = document.getElementById("music");
-  const toggle    = document.getElementById("musictoggle");
+const openBtn=document.getElementById("openBtn");
+const opening=document.getElementById("opening");
+const main=document.getElementById("main");
+const music=document.getElementById("music");
+const musicToggle=document.getElementById("musicToggle");
 
-/* ================= BUKA UNDANGAN ================= */
-  if (openBtn && opening && main) {
-    openBtn.addEventListener("click", () => {
-      opening.style.display = "none";
-      main.style.display = "block";
-      window.scrollTo(0, 0);
-
-      if (music) {
-        music.play().catch(()=>{});
-        toggle.classList.add("playing");
-        toggle.textContent = "🔊";
-      }
-    });
-  }
-
-  /* ================= MUSIC TOGGLE ================= */
-  if (toggle && music) {
-    toggle.addEventListener("click", () => {
-      if (music.paused) {
-        music.play().catch(()=>{});
-        toggle.textContent = "🔊";
-        toggle.classList.add("playing");
-      } else {
-        music.pause();
-        toggle.textContent = "🔇";
-        toggle.classList.remove("playing");
-      }
-    });
-  }
-
+/* OPEN */
+openBtn.addEventListener("click",()=>{
+  opening.style.display="none";
+  main.style.display="block";
+  window.scrollTo(0,0);
+  music.play().catch(()=>{});
+  musicToggle.classList.add("playing","active");
 });
 
-  /* ===============================
-     NAMA TAMU DARI URL
-     ?to=Nama+Tamu
-  =============================== */
-  const params = new URLSearchParams(window.location.search);
-  const guest  = params.get("to");
-  const guestEl = document.getElementById("guest");
-
-  if (guest && guestEl) {
-    guestEl.innerText = guest.replace(/\+/g, " ");
+/* MUSIC TOGGLE */
+musicToggle.addEventListener("click",()=>{
+  if(music.paused){
+    music.play().catch(()=>{});
+    musicToggle.classList.add("playing","active");
+  }else{
+    music.pause();
+    musicToggle.classList.remove("playing","active");
   }
-
-  /* ===============================
-     COUNTDOWN
-  =============================== */
-  const countdown = document.getElementById("countdown");
-  const target = new Date("2026-01-12T09:00:00").getTime();
-
-  if (countdown) {
-    setInterval(() => {
-      const diff = target - Date.now();
-
-      if (diff <= 0) {
-        countdown.innerText = "Hari Bahagia 🤍";
-        return;
-      }
-
-      const d = Math.floor(diff / 86400000);
-      const h = Math.floor((diff / 3600000) % 24);
-      const m = Math.floor((diff / 60000) % 60);
-
-      countdown.innerText = `${d} Hari ${h} Jam ${m} Menit`;
-    }, 1000);
-  }
-
-  /* ===============================
-     KOMENTAR (LOCAL STORAGE)
-  =============================== */
-  const form = document.getElementById("commentForm");
-  const list = document.getElementById("commentList");
-
-  function loadComments() {
-    if (!list) return;
-    const data = JSON.parse(localStorage.getItem("comments")) || [];
-    list.innerHTML = "";
-    data.forEach(c => {
-      const div = document.createElement("div");
-      div.innerHTML = `<strong>${c.name}</strong><p>${c.message}</p>`;
-      div.style.marginBottom = "14px";
-      list.appendChild(div);
-    });
-  }
-
-  if (form) {
-    form.addEventListener("submit", e => {
-      e.preventDefault();
-      const name = document.getElementById("name").value;
-      const message = document.getElementById("message").value;
-
-      const data = JSON.parse(localStorage.getItem("comments")) || [];
-      data.push({ name, message });
-      localStorage.setItem("comments", JSON.stringify(data));
-
-      form.reset();
-      loadComments();
-    });
-  }
-
-  loadComments();
-
-  /* ===============================
-     SCROLL REVEAL
-  =============================== */
-  const reveals = document.querySelectorAll(".reveal");
-
-  if (reveals.length) {
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add("show");
-        }
-      });
-    }, { threshold: 0.2 });
-
-    reveals.forEach(el => observer.observe(el));
-  }
-
-  /* ===============================
-     QRIS FULLSCREEN MODAL
-  =============================== */
-  const qrisThumb = document.getElementById("qrisThumb");
-  const qrisModal = document.getElementById("qrisModal");
-  const qrisClose = document.getElementById("qrisClose");
-
-  if (qrisThumb && qrisModal) {
-    qrisThumb.addEventListener("click", () => {
-      qrisModal.classList.add("show");
-      document.body.style.overflow = "hidden";
-    });
-  }
-
-  if (qrisClose && qrisModal) {
-    qrisClose.addEventListener("click", () => {
-      qrisModal.classList.remove("show");
-      document.body.style.overflow = "";
-    });
-  }
-
-  if (qrisModal) {
-    qrisModal.addEventListener("click", e => {
-      if (e.target === qrisModal) {
-        qrisModal.classList.remove("show");
-        document.body.style.overflow = "";
-      }
-    });
-  }
-
 });
-const bgSections = document.querySelectorAll(".auto-bg");
 
-bgSections.forEach((sec, i)=>{
-  sec.setAttribute("data-bg", (i % 3) + 1);
+/* COUNTDOWN */
+const target=new Date("2026-01-12T09:00:00").getTime();
+setInterval(()=>{
+  const diff=target-Date.now();
+  if(diff<=0)return;
+  const d=Math.floor(diff/86400000);
+  const h=Math.floor(diff/3600000)%24;
+  const m=Math.floor(diff/60000)%60;
+  document.getElementById("countdown").innerText=`${d} Hari ${h} Jam ${m} Menit`;
+},1000);
+
+/* REVEAL */
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add("show")});
+},{threshold:.2});
+document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
+
+/* QRIS MODAL */
+const qrisThumb=document.getElementById("qrisThumb");
+const qrisModal=document.getElementById("qrisModal");
+const qrisClose=document.getElementById("qrisClose");
+qrisThumb.onclick=()=>qrisModal.classList.add("show");
+qrisClose.onclick=()=>qrisModal.classList.remove("show");
+qrisModal.onclick=e=>{if(e.target===qrisModal)qrisModal.classList.remove("show")};
+
+/* COMMENTS */
+const form=document.getElementById("commentForm");
+const list=document.getElementById("commentList");
+function load(){
+  list.innerHTML="";
+  (JSON.parse(localStorage.getItem("comments"))||[]).reverse()
+    .forEach(c=>list.innerHTML+=`<div><b>${c.name}</b><p>${c.message}</p></div>`);
+}
+form.addEventListener("submit",e=>{
+  e.preventDefault();
+  const data=JSON.parse(localStorage.getItem("comments"))||[];
+  data.push({name:name.value,message:message.value});
+  localStorage.setItem("comments",JSON.stringify(data));
+  form.reset();load();
+});
+load();
+
 });

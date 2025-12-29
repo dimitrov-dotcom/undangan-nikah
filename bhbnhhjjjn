@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Undangan Pernikahan Ahmad & Siti</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500&family=Amiri&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<!-- WATERMARK BRAND -->
+<div class="watermark">
+  Crafted by <strong>VARA_DIGITAL</strong>
+</div>
+<!-- MUSIC -->
+<audio id="music" loop>
+  <source src="assets/music.mp3" type="audio/mpeg">
+</audio>
+<button id="musicToggle" class="music-btn">🔊</button>
+
+<!-- OPENING -->
+<section class="opening reveal" id="opening">
+  <h4>Kepada Yth</h4>
+  <h1 id="guest">Tamu Undangan</h1>
+  <p>Dengan penuh rasa syukur kami mengundang Anda</p>
+  <button id="openBtn">Buka Undangan</button>
+</section>
+
+<main id="main" style="display:none">
+
+<!-- HERO -->
+<section class="hero auto-bg reveal" id="hero">
+
+  <!-- BISMILLAH -->
+  <div class="bismillah">
+    <svg viewBox="0 0 900 260">
+      <defs>
+        <linearGradient id="goldFlow" x1="0%" y1="0%" x2="200%" y2="0%">
+          <stop offset="0%" stop-color="#b48b3d"/>
+          <stop offset="25%" stop-color="#fff3c4"/>
+          <stop offset="50%" stop-color="#d6b15e"/>
+          <stop offset="75%" stop-color="#fff3c4"/>
+          <stop offset="100%" stop-color="#b48b3d"/>
+        </linearGradient>
+      </defs>
+
+      <path id="curve" d="M100 180 Q450 60 800 180" fill="none"/>
+      <text>
+        <textPath href="#curve" startOffset="50%" text-anchor="middle"
+          class="bismillah-text">
+          بِسْمِ ٱللّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ
+        </textPath>
+      </text>
+    </svg>
+  </div>
+
+  <h1>Ahmad & Siti</h1>
+  <p>Akan melangsungkan pernikahan</p>
+  <div id="countdown"></div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PROFILE -->
+<section class="profile reveal auto-bg reveal">
+  <div class="card">
+    <h2>Ahmad</h2>
+    <p>Putra dari Bpk. XXX & Ibu XXX</p>
+  </div>
+  <div class="card">
+    <h2>Siti</h2>
+    <p>Putri dari Bpk. XXX & Ibu XXX</p>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- GALLERY -->
+<section class="gallery reveal auto-bg reveal">
+  <h2>Galeri Foto</h2>
+  <div class="gallery-track">
+    <img src="assets/gallery/nikah1.png">
+    <img src="assets/gallery/nikah2.png">
+    <img src="assets/gallery/nikah3.png">
+    <img src="assets/gallery/nikah4.png">
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- EVENT -->
+<section class="event reveal auto-bg reveal">
+  <h2>Akad Nikah</h2>
+  <p>Minggu, 12 Januari 2026</p>
+  <p>09.00 WIB</p>
+  <a href="https://maps.google.com" target="_blank">📍 Google Maps</a>
+</section>
+
+<div class="divider"></div>
+
+<!-- QRIS SAWERAN -->
+<section class="qris-section auto-bg reveal">
+  <h2>Saweran Digital</h2>
+  <p>Doa & restu Anda adalah hadiah terindah</p>
+
+  <div class="qris-frame">
+    <img 
+      src="assets/qris/qris.png"
+      alt="QRIS Pernikahan"
+      id="qrisThumb"
+    >
+  </div>
+</section>
+
+<!-- MODAL FULLSCREEN -->
+<div class="qris-modal" id="qrisModal">
+  <span class="qris-close" id="qrisClose">&times;</span>
+  <img src="assets/qris/qris.png" alt="QRIS Fullscreen">
+</div>
+
+<div class="divider"></div>
+
+<!-- COMMENT -->
+<section class="comment reveal auto-bg reveal">
+  <h2>Ucapan & Doa</h2>
+  <form id="commentForm">
+    <input id="name" placeholder="Nama" required>
+    <textarea id="message" placeholder="Ucapan & doa..." required></textarea>
+    <button>Kirim</button>
+  </form>
+  <div id="commentList"></div>
+</section>
+
+<footer>
+  <p>Terima kasih atas doa & restunya</p>
+</footer>
+
+</main>
+
+<script src="js/script.js"></script>
+</body>
+</html>
