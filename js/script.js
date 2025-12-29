@@ -98,3 +98,24 @@ const observer=new IntersectionObserver(entries=>{
 document.querySelectorAll("section,.divider-animate").forEach(el=>{
   observer.observe(el);
 });
+document.addEventListener("DOMContentLoaded", () => {
+  const btn = document.getElementById("openBtn");
+
+  if(btn){
+    btn.addEventListener("click", () => {
+      document.getElementById("opening").style.display = "none";
+      document.getElementById("main").style.display = "block";
+      window.scrollTo(0,0);
+
+      const hero = document.querySelector(".hero");
+      if(hero){
+        setTimeout(()=>hero.classList.add("show"),300);
+      }
+
+      const music = document.getElementById("music");
+      if(music){
+        music.play().catch(()=>{});
+      }
+    });
+  }
+});
