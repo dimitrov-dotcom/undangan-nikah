@@ -92,17 +92,6 @@ body{
   text-align:center;
 }
 
-/* GALLERY */
-.gallery{text-align:center;padding:60px 20px}
-.gallery-track{
-  display:flex;
-  gap:16px;
-  overflow-x:auto;
-}
-.gallery-track img{
-  height:260px;
-  border-radius:20px;
-}
 /* =========================
    GALLERY – GOLD FRAME
 ========================= */
@@ -115,6 +104,8 @@ body{
   overflow: hidden;
   width: 100%;
   position: relative;
+  padding: 0 10%;
+}
 }
 
 .gallery-track {
@@ -125,8 +116,8 @@ body{
 }
 
 .gallery-item {
-  min-width: 80%;
-  max-width: 80%;
+  min-width: 80vw;
+  max-width: 80vw;
   margin: auto;
   padding: 10px;
   border-radius: 22px;
@@ -254,6 +245,13 @@ footer{
   transform:none;
 }
 
-@media(max-width:768px){
-  .profile{grid-template-columns:1fr}
+@media (min-width: 768px) {
+  .gallery-item {
+    min-width: 45vw;
+    max-width: 45vw;
+  }
+
+  .gallery-wrapper {
+    padding: 0 5%;
+  }
 }
