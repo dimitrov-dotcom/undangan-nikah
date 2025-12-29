@@ -123,3 +123,31 @@ body{font-family:'Poppins',sans-serif;background:#020617;color:#fff}
   position:relative;
   z-index:2;
 }
+/* CALM MODE GLOBAL */
+*{
+  animation-duration: 6s !important;
+}
+/* =========================
+   WATERMARK
+========================= */
+.watermark{
+  position: fixed;
+  bottom: 12px;
+  left: 12px;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: .6px;
+  color: rgba(214,177,94,.45); /* emas transparan */
+  z-index: 9999;
+  pointer-events: none; /* ⬅️ PENTING: tidak ganggu klik */
+  user-select: none;
+}
+
+/* versi mobile */
+@media(max-width:768px){
+  .watermark{
+    font-size: 10px;
+    bottom: 8px;
+    left: 8px;
+  }
+}
