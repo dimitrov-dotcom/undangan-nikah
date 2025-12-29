@@ -135,3 +135,19 @@ sections.forEach(section=>{
   observer.observe(section);
 });
 
+/* =========================
+   DIVIDER SCROLL ANIMATION
+========================= */
+const dividers = document.querySelectorAll(".divider-animate");
+
+const dividerObserver = new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add("show");
+    }
+  });
+},{ threshold:0.3 });
+
+dividers.forEach(divider=>{
+  dividerObserver.observe(divider);
+});

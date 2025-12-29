@@ -536,3 +536,45 @@ section > *{
   opacity:1;
   transform:translateY(0);
 }
+/* =========================
+   ISLAMIC GEOMETRIC DIVIDER
+========================= */
+.divider-wrap{
+  width:100%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:40px 0;
+  background:transparent;
+}
+
+.divider{
+  width:260px;
+  max-width:80%;
+}
+
+/* shimmer animation */
+.divider path{
+  stroke-dasharray: 160;
+  stroke-dashoffset: 160;
+  animation: shimmer 3.5s linear infinite;
+  opacity:.9;
+}
+
+@keyframes shimmer{
+  0%   { stroke-dashoffset: 160; }
+  100% { stroke-dashoffset: -160; }
+}
+
+/* scroll reveal */
+.divider-animate{
+  opacity:0;
+  transform:translateY(20px);
+  transition:all .8s ease;
+}
+
+.divider-animate.show{
+  opacity:1;
+  transform:translateY(0);
+}
+
