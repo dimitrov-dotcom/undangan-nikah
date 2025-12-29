@@ -313,3 +313,23 @@ footer {
   opacity: 1;
   transform: none;
 }
+:root{
+  --bg-1: radial-gradient(circle at top, #0b2e59, #020617 70%);
+  --bg-2: radial-gradient(circle at bottom, #081a33, #020617 75%);
+  --bg-3: linear-gradient(to bottom, #020617, #081a33);
+}
+section{
+  position: relative;
+  padding: 80px 20px;
+  background: var(--bg-1);
+  transition: background 1.2s ease;
+}
+section:nth-of-type(1){ background: var(--bg-1); }
+section:nth-of-type(2){ background: var(--bg-2); }
+section:nth-of-type(3){ background: var(--bg-1); }
+section:nth-of-type(4){ background: var(--bg-3); }
+section:nth-of-type(5){ background: var(--bg-2); }
+
+.auto-bg[data-bg="1"]{ background: var(--bg-1); }
+.auto-bg[data-bg="2"]{ background: var(--bg-2); }
+.auto-bg[data-bg="3"]{ background: var(--bg-3); }

@@ -157,3 +157,8 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 });
+const bgSections = document.querySelectorAll(".auto-bg");
+
+bgSections.forEach((sec, i)=>{
+  sec.setAttribute("data-bg", (i % 3) + 1);
+});
