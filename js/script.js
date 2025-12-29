@@ -1,134 +1,107 @@
 document.addEventListener("DOMContentLoaded",()=>{
 
+/* OPEN */
 const openBtn=document.getElementById("openBtn");
 const opening=document.getElementById("opening");
 const main=document.getElementById("main");
 const music=document.getElementById("music");
-const musicToggle=document.getElementById("musicToggle");
+const toggle=document.getElementById("musicToggle");
 
-/* OPEN */
-openBtn.addEventListener("click",()=>{
+openBtn.onclick=()=>{
   opening.style.display="none";
   main.style.display="block";
-  window.scrollTo(0,0);
   music.play().catch(()=>{});
-  musicToggle.classList.add("playing","active");
-});
+}
 
 /* MUSIC TOGGLE */
-musicToggle.addEventListener("click",()=>{
+toggle.onclick=()=>{
   if(music.paused){
-    music.play().catch(()=>{});
-    musicToggle.classList.add("playing","active");
+    music.play();
+    toggle.textContent="🔊";
   }else{
     music.pause();
-    musicToggle.classList.remove("playing","active");
+    toggle.textContent="🔇";
   }
-});
+}
 
 /* COUNTDOWN */
-const target=new Date("2026-01-12T09:00:00").getTime();
+const target=new Date("2026-01-12 09:00").getTime();
 setInterval(()=>{
   const diff=target-Date.now();
-  if(diff<=0)return;
-  const d=Math.floor(diff/86400000);
-  const h=Math.floor(diff/3600000)%24;
-  const m=Math.floor(diff/60000)%60;
-  document.getElementById("countdown").innerText=`${d} Hari ${h} Jam ${m} Menit`;
+  const el=document.getElementById("countdown");
+  if(diff<=0){el.textContent="Hari Bahagia ❤️";return;}
+  el.textContent=
+    Math.floor(diff/86400000)+" Hari "+
+    Math.floor(diff%86400000/3600000)+" Jam "+
+    Math.floor(diff%3600000/60000)+" Menit";
 },1000);
 
-/* REVEAL */
-const observer=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add("show")});
+/* SCROLL REVEAL */
+const obs=new IntersectionObserver(es=>{
+  es.forEach(e=>{if(e.isIntersecting)e.target.classList.add("show")});
 },{threshold:.2});
-document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
+document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
 
 /* QRIS MODAL */
 const qrisThumb=document.getElementById("qrisThumb");
 const qrisModal=document.getElementById("qrisModal");
 const qrisClose=document.getElementById("qrisClose");
+
 qrisThumb.onclick=()=>qrisModal.classList.add("show");
 qrisClose.onclick=()=>qrisModal.classList.remove("show");
-qrisModal.onclick=e=>{if(e.target===qrisModal)qrisModal.classList.remove("show")};
+qrisModal.onclick=e=>{
+  if(e.target===qrisModal)qrisModal.classList.remove("show");
+}
 
 /* COMMENTS */
 const form=document.getElementById("commentForm");
 const list=document.getElementById("commentList");
+
 function load(){
   list.innerHTML="";
-  (JSON.parse(localStorage.getItem("comments"))||[]).reverse()
-    .forEach(c=>list.innerHTML+=`<div><b>${c.name}</b><p>${c.message}</p></div>`);
+  JSON.parse(localStorage.getItem("comments")||"[]")
+    .forEach(c=>{
+      const d=document.createElement("div");
+      d.innerHTML=`<strong>${c.name}</strong><br>${c.msg}`;
+      list.appendChild(d);
+    });
 }
-form.addEventListener("submit",e=>{
+form.onsubmit=e=>{
   e.preventDefault();
-  const data=JSON.parse(localStorage.getItem("comments"))||[];
-  data.push({name:name.value,message:message.value});
+  const data=JSON.parse(localStorage.getItem("comments")||"[]");
+  data.push({name:name.value,msg:message.value});
   localStorage.setItem("comments",JSON.stringify(data));
   form.reset();load();
-});
+}
 load();
 
-});
-/* ===============================
-   HERO GOLDEN DUST (MUSIC REACTIVE)
-================================ */
-const hero = document.getElementById("hero");
-const canvas = document.getElementById("heroDust");
-const ctx = canvas.getContext("2d");
-const music = document.getElementById("music");
-
-let w, h, dusts = [];
-let musicActive = false;
-
-function resizeHeroDust(){
-  w = canvas.width = hero.offsetWidth;
-  h = canvas.height = hero.offsetHeight;
+/* GOLD DUST HERO */
+const canvas=document.getElementById("heroDust");
+const ctx=canvas.getContext("2d");
+let w,h;
+function resize(){
+  w=canvas.width=window.innerWidth;
+  h=canvas.height=canvas.parentElement.offsetHeight;
 }
-window.addEventListener("resize", resizeHeroDust);
-resizeHeroDust();
+window.onresize=resize;resize();
 
-music.addEventListener("play", ()=> musicActive = true);
-music.addEventListener("pause", ()=> musicActive = false);
+const dots=Array.from({length:60},()=>({
+  x:Math.random()*w,
+  y:Math.random()*h,
+  r:Math.random()*2+1,
+  v:Math.random()*0.5+0.2
+}));
 
-class HeroDust{
-  constructor(){
-    this.reset();
-  }
-  reset(){
-    this.x = Math.random() * w;
-    this.y = Math.random() * h;
-    this.size = Math.random() * 2 + 0.6;
-    this.speedBase = Math.random() * 0.35 + 0.05;
-    this.alphaBase = Math.random() * 0.4 + 0.25;
-  }
-  draw(){
-    ctx.beginPath();
-    ctx.fillStyle = `rgba(214,177,94,${this.alpha})`;
-    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-    ctx.fill();
-  }
-  update(){
-    // 🔥 REAKTIF MUSIK
-    this.speed = musicActive ? this.speedBase * 2 : this.speedBase;
-    this.alpha = musicActive ? this.alphaBase + 0.35 : this.alphaBase;
-
-    this.y -= this.speed;
-    if(this.y < -10){
-      this.y = h + 10;
-      this.x = Math.random() * w;
-    }
-    this.draw();
-  }
-}
-
-// jumlah partikel (aman mobile)
-for(let i=0;i<80;i++){
-  dusts.push(new HeroDust());
-}
-
-function animateHeroDust(){
+(function animate(){
   ctx.clearRect(0,0,w,h);
-  dusts.forEach(d => d.update());
-  requestAnimationFrame(animateHeroDust);
-}
-animateHeroDust();
+  dots.forEach(d=>{
+    ctx.fillStyle="rgba(214,177,94,.7)";
+    ctx.beginPath();
+    ctx.arc(d.x,d.y,d.r,0,Math.PI*2);
+    ctx.fill();
+    d.y-=d.v;if(d.y<0)d.y=h;
+  });
+  requestAnimationFrame(animate);
+})();
+
+});
