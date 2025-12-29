@@ -428,3 +428,12 @@ divider-animate{
   color:#d6b15e;
   letter-spacing:1px;
 }
+/* BISMILLAH DI HERO */
+.bismillah-hero{
+  font-family: 'Amiri', 'Scheherazade New', serif;
+  font-size:18px;
+  margin-bottom:16px;
+  letter-spacing:1px;
+  color:#f5d48e;
+  opacity:0.9;
+}
