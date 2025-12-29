@@ -425,3 +425,63 @@ footer{
   color: #111;
   cursor: pointer;
 } 
+/* =========================
+   SECTION BACKGROUND SYSTEM
+========================= */
+
+/* HERO */
+.hero{
+  background: linear-gradient(
+    to bottom,
+    #0b2e59,
+    #123b6e
+  );
+  color: #ffffff;
+}
+
+/* PROFILE */
+.profile{
+  background: #ffffff;
+}
+
+/* GALLERY */
+.gallery{
+  background: #f6f1ea; /* champagne nude */
+}
+
+/* EVENT */
+.event{
+  background: #faf9f7; /* warm ivory */
+}
+
+/* RSVP */
+.rsvp{
+  background: #ffffff;
+}
+
+/* AMPLOP DIGITAL */
+.gift{
+  background: #f6f1ea;
+}
+
+/* SAWERAN QRIS */
+.saweran{
+  background: #faf9f7;
+}
+
+/* KOMENTAR */
+.comment{
+  background: #ffffff;
+}
+
+/* FOOTER */
+footer{
+  background: linear-gradient(
+    to top,
+    #020617,
+    #020617
+  );
+}
+section{
+  transition: background 0.4s ease;
+}
