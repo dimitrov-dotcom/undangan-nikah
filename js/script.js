@@ -105,3 +105,32 @@ const dots=Array.from({length:60},()=>({
 })();
 
 });
+/* =========================
+   GALLERY SWIPE
+========================= */
+const track = document.getElementById("galleryTrack");
+
+if (track) {
+  let startX = 0;
+  let currentTranslate = 0;
+  let prevTranslate = 0;
+  let isDragging = false;
+
+  track.addEventListener("touchstart", (e) => {
+    startX = e.touches[0].clientX;
+    isDragging = true;
+  });
+
+  track.addEventListener("touchmove", (e) => {
+    if (!isDragging) return;
+    const currentX = e.touches[0].clientX;
+    const diff = currentX - startX;
+    currentTranslate = prevTranslate + diff;
+    track.style.transform = `translateX(${currentTranslate}px)`;
+  });
+
+  track.addEventListener("touchend", () => {
+    isDragging = false;
+    prevTranslate = currentTranslate;
+  });
+}

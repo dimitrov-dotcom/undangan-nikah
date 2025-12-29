@@ -103,7 +103,72 @@ body{
   height:260px;
   border-radius:20px;
 }
+/* =========================
+   GALLERY – GOLD FRAME
+========================= */
+.gallery {
+  padding: 60px 20px;
+  text-align: center;
+}
 
+.gallery-wrapper {
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+}
+
+.gallery-track {
+  display: flex;
+  gap: 18px;
+  transition: transform 0.35s ease;
+  touch-action: pan-y;
+}
+
+.gallery-item {
+  min-width: 80%;
+  max-width: 80%;
+  margin: auto;
+  padding: 10px;
+  border-radius: 22px;
+  background: linear-gradient(
+    135deg,
+    #f5d48e,
+    #fff2c2,
+    #d6b15e
+  );
+  box-shadow:
+    0 0 30px rgba(214,177,94,.6),
+    inset 0 0 20px rgba(255,255,255,.25);
+  animation: goldGlow 4s ease-in-out infinite;
+}
+
+.gallery-item img {
+  width: 100%;
+  display: block;
+  border-radius: 16px;
+  background: #000;
+}
+
+/* GOLD PULSE */
+@keyframes goldGlow {
+  0% {
+    box-shadow: 0 0 18px rgba(214,177,94,.4);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(214,177,94,.9);
+  }
+  100% {
+    box-shadow: 0 0 18px rgba(214,177,94,.4);
+  }
+}
+
+/* DESKTOP */
+@media (min-width: 768px) {
+  .gallery-item {
+    min-width: 45%;
+    max-width: 45%;
+  }
+}
 /* EVENT */
 .event{text-align:center;padding:60px 20px}
 .event a{
