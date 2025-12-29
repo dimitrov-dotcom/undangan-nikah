@@ -305,3 +305,31 @@ footer{
 @media(max-width:768px){
   .profile{grid-template-columns:1fr;}
 }
+/* =========================
+   DIVIDER SECTION FIX
+========================= */
+.divider-section{
+  background:#fff7ea; /* beda dari gallery & event */
+  padding:50px 0;
+}
+
+.divider-wrap{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.divider{
+  width:260px;
+  max-width:80%;
+}
+
+.divider path{
+  stroke-dasharray:160;
+  stroke-dashoffset:160;
+  animation:shimmer 3.5s linear infinite;
+}
+
+@keyframes shimmer{
+  to{ stroke-dashoffset:-160; }
+}

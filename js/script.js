@@ -97,6 +97,19 @@ document.addEventListener("DOMContentLoaded", () => {
       loadComments();
     });
   }
+/* =========================
+     DIVIDER SCROLL REVEAL
+  ========================= */
+  const dividers = document.querySelectorAll(".divider-animate");
 
-  loadComments();
-});
+  const dividerObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add("show");
+      }
+    });
+  }, { threshold: 0.3 });
+
+  dividers.forEach(divider => {
+    dividerObserver.observe(divider);
+  });
