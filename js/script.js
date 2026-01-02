@@ -160,3 +160,25 @@ document.addEventListener("DOMContentLoaded", () => {
   revealItems.forEach(el => revealObserver.observe(el));
 
 });
+/* ================= GOLD SPARKLE OPENING ================= */
+const sparkleLayer = document.querySelector('.sparkle-layer');
+
+function createSparkle() {
+  if (!sparkleLayer) return;
+
+  const sparkle = document.createElement('span');
+  sparkle.className = 'sparkle';
+
+  sparkle.style.left = Math.random() * 100 + '%';
+  sparkle.style.top = Math.random() * 100 + '%';
+  sparkle.style.animationDuration = (3 + Math.random() * 2) + 's';
+
+  sparkleLayer.appendChild(sparkle);
+
+  setTimeout(() => {
+    sparkle.remove();
+  }, 4000);
+}
+
+/* Muncul pelan, tidak ramai */
+setInterval(createSparkle, 600);
