@@ -1,138 +1,162 @@
-// Countdown timer to 10 Jan 2026 14:00 local time
-function updateCountdown() {
-  const targetDate = new Date('2026-01-10T14:00:00');
-  const now = new Date();
-  const diff = targetDate - now;
+/* =====================================================
+   DOM READY
+===================================================== */
+document.addEventListener("DOMContentLoaded", () => {
 
-  if (diff <= 0) {
-    document.getElementById('countdown-days').textContent = '00';
-    document.getElementById('countdown-hours').textContent = '00';
-    document.getElementById('countdown-minutes').textContent = '00';
-    document.getElementById('countdown-seconds').textContent = '00';
-    clearInterval(timerInterval);
-    return;
+  /* ================= OPENING ================= */
+  const opening = document.getElementById('opening');
+  const openBtn = document.getElementById('openBtn');
+
+  if (opening && openBtn) {
+    // kunci scroll saat opening
+    document.body.style.overflow = 'hidden';
+
+    openBtn.addEventListener('click', () => {
+      opening.classList.add('hide');
+      document.body.style.overflow = '';
+    });
   }
 
-  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-  const minutes = Math.floor((diff / (1000 * 60)) % 60);
-  const seconds = Math.floor((diff / 1000) % 60);
+  /* ================= COUNTDOWN ================= */
+  function updateCountdown() {
+    const targetDate = new Date('2026-01-10T14:00:00');
+    const now = new Date();
+    const diff = targetDate - now;
 
-  document.getElementById('countdown-days').textContent = days.toString().padStart(2, '0');
-  document.getElementById('countdown-hours').textContent = hours.toString().padStart(2, '0');
-  document.getElementById('countdown-minutes').textContent = minutes.toString().padStart(2, '0');
-  document.getElementById('countdown-seconds').textContent = seconds.toString().padStart(2, '0');
-}
+    const d = document.getElementById('countdown-days');
+    const h = document.getElementById('countdown-hours');
+    const m = document.getElementById('countdown-minutes');
+    const s = document.getElementById('countdown-seconds');
 
-const timerInterval = setInterval(updateCountdown, 1000);
-updateCountdown();
+    if (!d || !h || !m || !s) return;
 
-// Copy nomor rekening handler
-const copyBtn = document.getElementById('copy-btn');
-const nomorRekening = "138701000926530";
+    if (diff <= 0) {
+      d.textContent = h.textContent = m.textContent = s.textContent = "00";
+      clearInterval(timerInterval);
+      return;
+    }
 
-copyBtn.addEventListener('click', () => {
-  navigator.clipboard.writeText(nomorRekening).then(() => {
-    copyBtn.textContent = "Tersalin!";
-    copyBtn.style.backgroundColor = "#b0894a";
-    setTimeout(() => {
-      copyBtn.textContent = "Salin";
-      copyBtn.style.backgroundColor = "#ccc";
-    }, 2500);
-  }).catch(() => {
-    alert("Gagal menyalin nomor rekening. Silakan salin secara manual.");
-  });
-});
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((diff / (1000 * 60)) % 60);
+    const seconds = Math.floor((diff / 1000) % 60);
 
-// RSVP & Ucapan Form
-const form = document.getElementById('form-ucapan');
-const ucapanList = document.getElementById('ucapan-list');
-const totalUcapan = document.getElementById('total-ucapan');
-
-// Simulasi data awal ucapan
-let ucapanData = [
-  { nama: 'April Iakuan', status: 'Hadir', ucapan: 'Masya Allah selamat sayangku akhirnya sold out juga Samawah till jannah cintaku 🤲 love you more 🥰❤️', waktu: '3 hari, 22 jam yang lalu' },
-  { nama: 'Zahra', status: 'Hadir', ucapan: 'Masyaallah, Akhirnya 😁 nanti ku suruh mamaku yg datang, soalnya sementara di pinggir jga 🤲😘😍 peluk jauh kaka', waktu: '1 minggu yang lalu' },
-  { nama: 'Desi', status: 'Hadir', ucapan: 'Maa Shaa Allah dilancarkan sampai hari H Kaka cantikkuu 🥺🤍🤍🌻', waktu: '1 minggu yang lalu' },
-  { nama: 'Kimia 2012', status: 'Hadir', ucapan: 'Alhamdulillah dan selamat ripda\nSemoga dilancarkan semuanya dan setelah menikah menjadi keluarga yang sakinah mawadah warahmah', waktu: '1 minggu yang lalu' }
-];
-
-// Render awal ucapan
-function renderUcapan() {
-  ucapanList.innerHTML = '';
-  ucapanData.forEach(u => {
-    const item = document.createElement('div');
-    item.className = 'ucapan-item';
-    item.innerHTML = `
-      <div class="ucapan-head">
-        <span class="ucapan-nama">${escapeHtml(u.nama)}</span>
-        <span class="ucapan-status">${escapeHtml(u.status)}</span>
-      </div>
-      <p class="ucapan-text">${escapeHtml(u.ucapan).replace(/\n/g, '<br>')}</p>
-      <small style="opacity:0.6;font-size:0.8rem;">${escapeHtml(u.waktu)}</small>
-    `;
-    ucapanList.appendChild(item);
-  });
-  totalUcapan.textContent = `${ucapanData.length} Ucapan`;
-}
-
-// Escape HTML for safety
-function escapeHtml(text) {
-  const p = document.createElement('p');
-  p.textContent = text;
-  return p.innerHTML;
-}
-
-renderUcapan();
-
-// Form submit handler
-form.addEventListener('submit', e => {
-  e.preventDefault();
-  const nama = form.nama.value.trim();
-  const status = form.status.value;
-  const ucapanText = form.ucapan.value.trim();
-
-  if (!nama || !status || !ucapanText) {
-    alert("Mohon isi semua kolom dengan lengkap.");
-    return;
+    d.textContent = String(days).padStart(2, '0');
+    h.textContent = String(hours).padStart(2, '0');
+    m.textContent = String(minutes).padStart(2, '0');
+    s.textContent = String(seconds).padStart(2, '0');
   }
 
-  const newUcapan = {
-    nama,
-    status,
-    ucapan: ucapanText,
-    waktu: 'Baru saja'
-  };
+  const timerInterval = setInterval(updateCountdown, 1000);
+  updateCountdown();
 
-  ucapanData.unshift(newUcapan);
+  /* ================= COPY REKENING ================= */
+  const copyBtn = document.getElementById('copy-btn');
+  const nomorRekening = "138701000926530";
+
+  if (copyBtn) {
+    copyBtn.addEventListener('click', () => {
+      navigator.clipboard.writeText(nomorRekening).then(() => {
+        copyBtn.textContent = "Tersalin!";
+        copyBtn.style.backgroundColor = "#b0894a";
+        copyBtn.style.color = "#fff";
+
+        setTimeout(() => {
+          copyBtn.textContent = "Salin";
+          copyBtn.style.backgroundColor = "#ccc";
+          copyBtn.style.color = "#333";
+        }, 2500);
+      });
+    });
+  }
+
+  /* ================= RSVP & UCAPAN ================= */
+  const form = document.getElementById('form-ucapan');
+  const ucapanList = document.getElementById('ucapan-list');
+  const totalUcapan = document.getElementById('total-ucapan');
+
+  let ucapanData = [
+    {
+      nama: 'April Iakuan',
+      status: 'Hadir',
+      ucapan: 'Masya Allah selamat sayangku 🤲',
+      waktu: '3 hari lalu'
+    },
+    {
+      nama: 'Zahra',
+      status: 'Hadir',
+      ucapan: 'Masyaallah, lancar sampai hari H 🤍',
+      waktu: '1 minggu lalu'
+    }
+  ];
+
+  function escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+  }
+
+  function renderUcapan() {
+    if (!ucapanList || !totalUcapan) return;
+
+    ucapanList.innerHTML = '';
+    ucapanData.forEach(u => {
+      const item = document.createElement('div');
+      item.className = 'ucapan-item';
+      item.innerHTML = `
+        <div class="ucapan-head">
+          <span class="ucapan-nama">${escapeHtml(u.nama)}</span>
+          <span class="ucapan-status">${escapeHtml(u.status)}</span>
+        </div>
+        <p class="ucapan-text">${escapeHtml(u.ucapan).replace(/\n/g, '<br>')}</p>
+        <small style="opacity:.6">${escapeHtml(u.waktu)}</small>
+      `;
+      ucapanList.appendChild(item);
+    });
+
+    totalUcapan.textContent = `${ucapanData.length} Ucapan`;
+  }
+
   renderUcapan();
 
-  form.reset();
-  form.status.selectedIndex = 0;
+  if (form) {
+    form.addEventListener('submit', e => {
+      e.preventDefault();
 
-// OPENING HANDLER
-const opening = document.getElementById('opening');
-const openBtn = document.getElementById('openBtn');
+      const nama = form.nama.value.trim();
+      const status = form.status.value;
+      const ucapan = form.ucapan.value.trim();
 
-// lock scroll saat opening
-document.body.style.overflow = 'hidden';
+      if (!nama || !status || !ucapan) {
+        alert("Mohon lengkapi semua kolom.");
+        return;
+      }
 
-openBtn.addEventListener('click', () => {
-  opening.classList.add('hide');
-  document.body.style.overflow = '';
+      ucapanData.unshift({
+        nama,
+        status,
+        ucapan,
+        waktu: 'Baru saja'
+      });
+
+      renderUcapan();
+      form.reset();
+      form.status.selectedIndex = 0;
+    });
+  }
+
+  /* ================= SCROLL REVEAL ================= */
+  const revealItems = document.querySelectorAll('.reveal');
+
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('show');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  revealItems.forEach(el => revealObserver.observe(el));
+
 });
-// SCROLL REVEAL
-const revealElements = document.querySelectorAll('.reveal');
-
-const revealObserver = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('show');
-      revealObserver.unobserve(entry.target);
-    }
-  });
-}, {
-  threshold: 0.15
-});
-
-revealElements.forEach(el => revealObserver.observe(el));
