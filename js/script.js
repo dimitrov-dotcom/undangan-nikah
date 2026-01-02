@@ -110,3 +110,29 @@ form.addEventListener('submit', e => {
   form.reset();
   form.status.selectedIndex = 0;
 
+// OPENING HANDLER
+const opening = document.getElementById('opening');
+const openBtn = document.getElementById('openBtn');
+
+// lock scroll saat opening
+document.body.style.overflow = 'hidden';
+
+openBtn.addEventListener('click', () => {
+  opening.classList.add('hide');
+  document.body.style.overflow = '';
+});
+// SCROLL REVEAL
+const revealElements = document.querySelectorAll('.reveal');
+
+const revealObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('show');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, {
+  threshold: 0.15
+});
+
+revealElements.forEach(el => revealObserver.observe(el));
