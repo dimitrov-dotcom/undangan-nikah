@@ -1,136 +1,112 @@
-document.addEventListener("DOMContentLoaded",()=>{
+// Countdown timer to 10 Jan 2026 14:00 local time
+function updateCountdown() {
+  const targetDate = new Date('2026-01-10T14:00:00');
+  const now = new Date();
+  const diff = targetDate - now;
 
-/* OPEN */
-const openBtn=document.getElementById("openBtn");
-const opening=document.getElementById("opening");
-const main=document.getElementById("main");
-const music=document.getElementById("music");
-const toggle=document.getElementById("musicToggle");
-
-openBtn.onclick=()=>{
-  opening.style.display="none";
-  main.style.display="block";
-  music.play().catch(()=>{});
-}
-
-/* MUSIC TOGGLE */
-toggle.onclick=()=>{
-  if(music.paused){
-    music.play();
-    toggle.textContent="🔊";
-  }else{
-    music.pause();
-    toggle.textContent="🔇";
+  if (diff <= 0) {
+    document.getElementById('countdown-days').textContent = '00';
+    document.getElementById('countdown-hours').textContent = '00';
+    document.getElementById('countdown-minutes').textContent = '00';
+    document.getElementById('countdown-seconds').textContent = '00';
+    clearInterval(timerInterval);
+    return;
   }
+
+  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+  const minutes = Math.floor((diff / (1000 * 60)) % 60);
+  const seconds = Math.floor((diff / 1000) % 60);
+
+  document.getElementById('countdown-days').textContent = days.toString().padStart(2, '0');
+  document.getElementById('countdown-hours').textContent = hours.toString().padStart(2, '0');
+  document.getElementById('countdown-minutes').textContent = minutes.toString().padStart(2, '0');
+  document.getElementById('countdown-seconds').textContent = seconds.toString().padStart(2, '0');
 }
 
-/* COUNTDOWN */
-const target=new Date("2026-01-12 09:00").getTime();
-setInterval(()=>{
-  const diff=target-Date.now();
-  const el=document.getElementById("countdown");
-  if(diff<=0){el.textContent="Hari Bahagia ❤️";return;}
-  el.textContent=
-    Math.floor(diff/86400000)+" Hari "+
-    Math.floor(diff%86400000/3600000)+" Jam "+
-    Math.floor(diff%3600000/60000)+" Menit";
-},1000);
+const timerInterval = setInterval(updateCountdown, 1000);
+updateCountdown();
 
-/* SCROLL REVEAL */
-const obs=new IntersectionObserver(es=>{
-  es.forEach(e=>{if(e.isIntersecting)e.target.classList.add("show")});
-},{threshold:.2});
-document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
+// Copy nomor rekening handler
+const copyBtn = document.getElementById('copy-btn');
+const nomorRekening = "138701000926530";
 
-/* QRIS MODAL */
-const qrisThumb=document.getElementById("qrisThumb");
-const qrisModal=document.getElementById("qrisModal");
-const qrisClose=document.getElementById("qrisClose");
-
-qrisThumb.onclick=()=>qrisModal.classList.add("show");
-qrisClose.onclick=()=>qrisModal.classList.remove("show");
-qrisModal.onclick=e=>{
-  if(e.target===qrisModal)qrisModal.classList.remove("show");
-}
-
-/* COMMENTS */
-const form=document.getElementById("commentForm");
-const list=document.getElementById("commentList");
-
-function load(){
-  list.innerHTML="";
-  JSON.parse(localStorage.getItem("comments")||"[]")
-    .forEach(c=>{
-      const d=document.createElement("div");
-      d.innerHTML=`<strong>${c.name}</strong><br>${c.msg}`;
-      list.appendChild(d);
-    });
-}
-form.onsubmit=e=>{
-  e.preventDefault();
-  const data=JSON.parse(localStorage.getItem("comments")||"[]");
-  data.push({name:name.value,msg:message.value});
-  localStorage.setItem("comments",JSON.stringify(data));
-  form.reset();load();
-}
-load();
-
-/* GOLD DUST HERO */
-const canvas=document.getElementById("heroDust");
-const ctx=canvas.getContext("2d");
-let w,h;
-function resize(){
-  w=canvas.width=window.innerWidth;
-  h=canvas.height=canvas.parentElement.offsetHeight;
-}
-window.onresize=resize;resize();
-
-const dots=Array.from({length:60},()=>({
-  x:Math.random()*w,
-  y:Math.random()*h,
-  r:Math.random()*2+1,
-  v:Math.random()*0.5+0.2
-}));
-
-(function animate(){
-  ctx.clearRect(0,0,w,h);
-  dots.forEach(d=>{
-    ctx.fillStyle="rgba(214,177,94,.7)";
-    ctx.beginPath();
-    ctx.arc(d.x,d.y,d.r,0,Math.PI*2);
-    ctx.fill();
-    d.y-=d.v;if(d.y<0)d.y=h;
+copyBtn.addEventListener('click', () => {
+  navigator.clipboard.writeText(nomorRekening).then(() => {
+    copyBtn.textContent = "Tersalin!";
+    copyBtn.style.backgroundColor = "#b0894a";
+    setTimeout(() => {
+      copyBtn.textContent = "Salin";
+      copyBtn.style.backgroundColor = "#ccc";
+    }, 2500);
+  }).catch(() => {
+    alert("Gagal menyalin nomor rekening. Silakan salin secara manual.");
   });
-  requestAnimationFrame(animate);
-})();
-
 });
-/* =========================
-   GALLERY SWIPE
-========================= */
-const track = document.getElementById("galleryTrack");
 
-if (track) {
-  let startX = 0;
-  let currentTranslate = 0;
-  let prevTranslate = 0;
-  let isDragging = false;
+// RSVP & Ucapan Form
+const form = document.getElementById('form-ucapan');
+const ucapanList = document.getElementById('ucapan-list');
+const totalUcapan = document.getElementById('total-ucapan');
 
-  track.addEventListener("touchstart", (e) => {
-    startX = e.touches[0].clientX;
-    isDragging = true;
+// Simulasi data awal ucapan
+let ucapanData = [
+  { nama: 'April Iakuan', status: 'Hadir', ucapan: 'Masya Allah selamat sayangku akhirnya sold out juga Samawah till jannah cintaku 🤲 love you more 🥰❤️', waktu: '3 hari, 22 jam yang lalu' },
+  { nama: 'Zahra', status: 'Hadir', ucapan: 'Masyaallah, Akhirnya 😁 nanti ku suruh mamaku yg datang, soalnya sementara di pinggir jga 🤲😘😍 peluk jauh kaka', waktu: '1 minggu yang lalu' },
+  { nama: 'Desi', status: 'Hadir', ucapan: 'Maa Shaa Allah dilancarkan sampai hari H Kaka cantikkuu 🥺🤍🤍🌻', waktu: '1 minggu yang lalu' },
+  { nama: 'Kimia 2012', status: 'Hadir', ucapan: 'Alhamdulillah dan selamat ripda\nSemoga dilancarkan semuanya dan setelah menikah menjadi keluarga yang sakinah mawadah warahmah', waktu: '1 minggu yang lalu' }
+];
+
+// Render awal ucapan
+function renderUcapan() {
+  ucapanList.innerHTML = '';
+  ucapanData.forEach(u => {
+    const item = document.createElement('div');
+    item.className = 'ucapan-item';
+    item.innerHTML = `
+      <div class="ucapan-head">
+        <span class="ucapan-nama">${escapeHtml(u.nama)}</span>
+        <span class="ucapan-status">${escapeHtml(u.status)}</span>
+      </div>
+      <p class="ucapan-text">${escapeHtml(u.ucapan).replace(/\n/g, '<br>')}</p>
+      <small style="opacity:0.6;font-size:0.8rem;">${escapeHtml(u.waktu)}</small>
+    `;
+    ucapanList.appendChild(item);
   });
-
-  track.addEventListener("touchmove", (e) => {
-    if (!isDragging) return;
-    const currentX = e.touches[0].clientX;
-    const diff = currentX - startX;
-    currentTranslate = prevTranslate + diff;
-    track.style.transform = `translateX(${currentTranslate}px)`;
-  });
-
-  track.addEventListener("touchend", () => {
-    isDragging = false;
-    prevTranslate = currentTranslate;
-  });
+  totalUcapan.textContent = `${ucapanData.length} Ucapan`;
 }
+
+// Escape HTML for safety
+function escapeHtml(text) {
+  const p = document.createElement('p');
+  p.textContent = text;
+  return p.innerHTML;
+}
+
+renderUcapan();
+
+// Form submit handler
+form.addEventListener('submit', e => {
+  e.preventDefault();
+  const nama = form.nama.value.trim();
+  const status = form.status.value;
+  const ucapanText = form.ucapan.value.trim();
+
+  if (!nama || !status || !ucapanText) {
+    alert("Mohon isi semua kolom dengan lengkap.");
+    return;
+  }
+
+  const newUcapan = {
+    nama,
+    status,
+    ucapan: ucapanText,
+    waktu: 'Baru saja'
+  };
+
+  ucapanData.unshift(newUcapan);
+  renderUcapan();
+
+  form.reset();
+  form.status.selectedIndex = 0;
+

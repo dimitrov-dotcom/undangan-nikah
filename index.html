@@ -1,129 +1,157 @@
-<!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<title>Undangan Pernikahan Yamal Dan Viera</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Undangan Pernikahan Ripda & Suran</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&family=Playfair+Display&family=Poppins&display=swap" rel="stylesheet" />
 </head>
-
 <body>
+  <main id="undangan">
+    <!-- QS & Ayat -->
+    <section class="ayat-section">
+      <div class="floral-top"></div>
+      <h2 class="surah-title">QS. Ar-Rum Ayat 21</h2>
+      <p class="ayat-arab">وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً إِنَّ فِي ذَلِكَ لآيَاتٍ لِّقَوْمٍ يَتَفَكَّرُونَ</p>
+      <p class="ayat-terjemah">
+        Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang. Sungguh, pada yang demikian itu benar-benar terdapat tanda-tanda (kebesaran Allah) bagi kaum yang berpikir.
+      </p>
+      <div class="floral-bottom"></div>
+    </section>
 
-<!-- WATERMARK -->
-<div class="watermark">Di buat oleh VARA_DIGITAL</div>
+    <!-- Mempelai -->
+    <section class="mempelai-section">
+      <h3 class="section-title">Mempelai</h3>
+      <p class="memp-adzan">Maha Suci Allah Subhanahu wa Ta'ala yang telah menciptakan makhluk-Nya berpasang-pasangan. Ya Allah, perkenankanlah dan Ridhoilah Pernikahan Kami.</p>
 
-<!-- MUSIC -->
-<audio id="music" loop>
-  <source src="assets/music.mp3" type="audio/mpeg">
-</audio>
-<button id="musicToggle" class="music-btn">🔊</button>
+      <div class="mempelai-list">
+        <article class="mempelai-item">
+          <h4>Mempelai Wanita</h4>
+          <p class="nama">Ripda <span class="gelar">Ripdayana, S.si</span></p>
+          <p class="orangtua">Putri dari pasangan Bapak Ainal Bahri dan Ibu Nursida Taha</p>
+        </article>
 
-<!-- OPENING -->
-<section class="opening" id="opening">
-  <h1>Yamal & Viera</h1>
-  <p>Akan melangsungkan pernikahan</p>
-  <button id="openBtn">Buka Undangan</button>
-</section>
+        <article class="mempelai-item center-ampersand">
+          <div class="ampersand">&amp;</div>
+        </article>
 
-<main id="main" style="display:none">
-
-<!-- HERO -->
-<section class="hero reveal" id="hero">
-  <canvas id="heroDust"></canvas>
-
-  <h1>Yamal & Viera</h1>
-  <p id="countdown"></p>
-</section>
-
-<div class="divider reveal"></div>
-
-<!-- PROFILE -->
-<section class="profile reveal">
-  <div class="card">
-    <h2>Eric Yamal</h2>
-    <p>Putra dari Bpk.Alex & Ibu Sumirah</p>
-  </div>
-  <div class="card">
-    <h2>Viera</h2>
-    <p>Putri dari Bpk. Putra & Ibu Putri lestari</p>
-  </div>
-</section>
-
-<div class="divider reveal"></div>
-
-<!-- GALLERY -->
-<section class="gallery reveal">
-  <h2>Galeri Foto</h2>
-
-  <div class="gallery-wrapper">
-    <div class="gallery-track" id="galleryTrack">
-      <div class="gallery-item">
-        <img src="assets/gallery/nikah1.png" alt="Foto 1">
+        <article class="mempelai-item">
+          <h4>Mempelai Pria</h4>
+          <p class="nama">Suran <span class="gelar">Suran</span></p>
+          <p class="orangtua">Putra dari Pasangan Bapak Haruji dan Hadira L</p>
+        </article>
       </div>
-      <div class="gallery-item">
-        <img src="assets/gallery/nikah2.png" alt="Foto 2">
+    </section>
+
+    <!-- Save The Date dan Countdown -->
+    <section class="save-date-section">
+      <h2 class="save-date-title">Save The Date</h2>
+      <p>Dengan memohon rahmat dan ridho Allah SWT, kami mengundang Bapak/Ibu/Saudara/i, untuk menghadiri acara pernikahan kami:</p>
+      <p class="tgl-acara">Sabtu, 10 Januari 2026</p>
+
+      <div class="countdown" aria-live="polite" aria-atomic="true">
+        <div><span id="countdown-days">00</span><small>Hari</small></div>
+        <div><span id="countdown-hours">00</span><small>Jam</small></div>
+        <div><span id="countdown-minutes">00</span><small>Menit</small></div>
+        <div><span id="countdown-seconds">00</span><small>Detik</small></div>
       </div>
-      <div class="gallery-item">
-        <img src="assets/gallery/nikah3.png" alt="Foto 3">
+
+      <div class="acara-box">
+        <div class="acara-item">
+          <p>Akad Nikah</p>
+          <div class="acara-tgl">
+            <span class="hari">Sabtu,</span>
+            <span class="tanggal">10</span>
+            <span class="tahun">2026</span>
+            <span class="bulan">Januari</span>
+          </div>
+          <p class="waktu">Pukul 14:00 - Selesai</p>
+          <p class="lokasi"><strong>Kediaman Mempelai Wanita</strong><br />Desa Laulalang Komplek Gudang</p>
+        </div>
+        <div class="acara-item">
+          <p>Resepsi</p>
+          <div class="acara-tgl">
+            <span class="hari">Sabtu,</span>
+            <span class="tanggal">10</span>
+            <span class="tahun">2026</span>
+            <span class="bulan">Januari</span>
+          </div>
+          <p class="waktu">Pukul 19:45 - Selesai</p>
+          <p class="lokasi"><strong>Kediaman Mempelai Wanita</strong><br />Desa Laulalang Komplek Gudang</p>
+        </div>
       </div>
-      <div class="gallery-item">
-        <img src="assets/gallery/nikah4.png" alt="Foto 4">
+    </section>
+
+    <!-- Kado Pernikahan -->
+    <section class="kado-section">
+      <h2 class="section-title">Kado Pernikahan</h2>
+      <p>
+        Kehadiran Anda merupakan sebuah do'a serta rasa syukur bagi kami, namun jika memberi adalah bentuk Do'a bagi Anda, kami telah menyediakan pilihan pengiriman kado dalam berbagai bentuk dan media di bawah.
+      </p>
+      <div class="bank-card">
+        <div class="bank-logo">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/BRI_Logo.svg/2560px-BRI_Logo.svg.png" alt="Logo Bank BRI" />
+        </div>
+        <div class="bank-info">
+          <p class="nama-akun">Ripdayana</p>
+          <p class="nomor-akun">138701000926530</p>
+        </div>
+        <button id="copy-btn" aria-label="Salin nomor rekening">Salin</button>
       </div>
-    </div>
-  </div>
-</section>
+      <a href="https://wa.me/628123456789" target="_blank" rel="noopener" class="btn-konfirmasi" aria-label="Konfirmasi Hadiah via WhatsApp">
+        <svg fill="#fff" height="18" width="18" viewBox="0 0 24 24"><path d="M20.52 3.48a11.78 11.78 0 0 0-16.58 0 11.93 11.93 0 0 0-3.42 9.5c.01 2.04.52 4.07 1.52 5.85l-1.5 5.47 5.58-1.46a11.89 11.89 0 0 0 5.08 1.22h.02a11.9 11.9 0 0 0 8.4-19.6zM12 21a9.46 9.46 0 0 1-4.65-1.21l-.33-.21-3.3.86.88-3.22-.22-.35A9.51 9.51 0 0 1 12 3a9.5 9.5 0 0 1 8.47 13.48A9.49 9.49 0 0 1 12 21zm5.29-6.4c-.18-.1-1.06-.52-1.23-.58-.17-.07-.3-.1-.44.1-.14.17-.55.58-.67.7a.8.8 0 0 1-1.24-.42c-.13-.3-.5-.47-.75-.56a1.16 1.16 0 0 0-1.38.74c-.15.38.16.98.42 1.25.28.3.5.64.72.97a3.98 3.98 0 0 0 1.69 1.36c.21.1.43.09.6-.06.18-.17.55-.63.7-.85a.5.5 0 0 1 .75-.13c.46.3 1.13.97 1.3 1.15.17.2.27.45.17.7a2.32 2.32 0 0 1-1.84 1.1c-.38 0-.69-.04-1.03-.18A8.56 8.56 0 0 1 9 17c-3.02-.58-5.04-3.28-5.04-6.3a6.53 6.53 0 0 1 11.36-4.59 6.13 6.13 0 0 1 1.73 4.55c0 1.12-.3 2.06-.77 2.86-.6 1.05-1.29 1.78-1.99 2.28z"/></svg>
+        Konfirmasi Hadiah
+      </a>
+    </section>
 
-<div class="divider reveal"></div>
+    <!-- RSVP & Ucapan -->
+    <section class="rsvp-section">
+      <h2 class="section-title">RSVP & Ucapan</h2>
+      <p>Tuliskan harapan dan doa terbaik Anda melalui kolom berikut:</p>
+      <form id="form-ucapan" aria-describedby="total-ucapan">
+        <div id="total-ucapan" class="total-ucapan">26 Ucapan</div>
 
-<!-- EVENT -->
-<section class="event reveal">
-  <h2>Akad Nikah</h2>
-  <p>Minggu, 12 Januari 2026</p>
-  <p>09.00 WIB</p>
-  <p>jl.marsma r iswahyudi Rt 12 No 13 Balikpapan Selatan</p>
-  <a href="https://maps.google.com" target="_blank">📍 Google Maps</a>
-</section>
+        <input type="text" name="nama" id="input-nama" placeholder="Nama Anda" required autocomplete="off" />
+        <select name="status" id="input-status" required>
+          <option value="" disabled selected>Konfirmasi Kehadiran</option>
+          <option value="Hadir">Hadir</option>
+          <option value="Tidak Hadir">Tidak Hadir</option>
+          <option value="Ucapan">Ucapan</option>
+        </select>
+        <textarea name="ucapan" id="input-ucapan" placeholder="Tulis ucapan" rows="3" required></textarea>
+        <button type="submit">Kirim</button>
+      </form>
 
-<div class="divider reveal"></div>
+      <div id="ucapan-list" class="ucapan-list" aria-live="polite" aria-relevant="additions"></div>
+    </section>
 
-<!-- QRIS -->
-<section class="qris-section reveal">
-  <h2>Saweran Digital</h2>
-  <p>Doa & restu Anda adalah hadiah terindah</p>
+    <!-- Terima Kasih -->
+    <section class="thanks-section">
+      <div class="floral-top"></div>
+      <h2>Terima Kasih</h2>
+      <p>
+        Merupakan suatu kehormatan dan kebahagiaan bagi kami sekeluarga apabila Bapak/Ibu/Saudara/i berkenan hadir untuk memberikan doa restu kepada kedua mempelai. Atas kehadiran serta doa restu, kami ucapkan terima kasih.
+      </p>
 
-  <div class="qris-frame">
-    <img src="assets/qris/qris.png" id="qrisThumb">
-  </div>
-  <p class="hint">Tap QR untuk memperbesar</p>
-</section>
+      <h3 class="nama-pengantin">Ripda dan Suran</h3>
 
-<!-- QRIS MODAL -->
-<div class="qris-modal" id="qrisModal">
-  <span class="qris-close" id="qrisClose">&times;</span>
-  <img src="assets/qris/qris.png">
-</div>
+      <div class="keluarga-besar">
+        <p><strong>Keluarga Besar</strong> Mempelai Wanita</p>
+        <p class="orangtua">Bapak Ainal Bahri dan Ibu Nursida Taha</p>
+      </div>
 
-<div class="divider reveal"></div>
+      <div class="keluarga-besar">
+        <p><strong>Keluarga Besar</strong> Mempelai Pria</p>
+        <p class="orangtua">Bapak Haruji dan Hadira L</p>
+      </div>
 
-<!-- COMMENT -->
-<section class="comment reveal">
-  <h2>Ucapan & Doa</h2>
-  <form id="commentForm">
-    <input id="name" placeholder="Nama" required>
-    <textarea id="message" placeholder="Tulis doa & ucapan..." required></textarea>
-    <button>Kirim Ucapan</button>
-  </form>
-  <div id="commentList"></div>
-</section>
+      <div class="signature">
+        <img src="https://i.ibb.co/kSy8Cyd/cartoon-couple-black.png" alt="Ilustrasi Mempelai" loading="lazy" />
+        <p>Made By Dinau Project</p>
+      </div>
+    </section>
+  </main>
 
-<footer>
-  <p>Terima kasih atas doa & restunya</p>
-</footer>
-
-</main>
-
-<script src="js/script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>

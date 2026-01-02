@@ -1,266 +1,549 @@
-*{margin:0;padding:0;box-sizing:border-box}
-body{
-  font-family:'Poppins',sans-serif;
-  background:#020617;
-  color:#fff;
+/* Font Families */
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #1a1a1a;
+  color: #ddd;
+  margin: 0;
+  padding: 0;
+  line-height: 1.5;
+}
+main#undangan {
+  max-width: 420px;
+  margin: 0 auto;
+  padding: 1rem 1.2rem 3rem;
 }
 
-/* WATERMARK */
-.watermark{
-  position:fixed;
-  bottom:10px;left:10px;
-  font-size:11px;
-  opacity:.3;
-  z-index:999;
+/* Floral Ornaments */
+
+.floral-top, .floral-bottom {
+  width: 100%;
+  height: 40px;
+  background-repeat: no-repeat;
+  background-position: center top;
+  margin-bottom: 1rem;
 }
 
-/* OPENING */
-.opening{
-  min-height:100vh;
-  background:radial-gradient(circle at top,#111827,#000);
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  text-align:center;
-}
-.opening h1{
-  font-family:'Playfair Display',serif;
-  font-size:40px;
-  background:linear-gradient(90deg,#f5d48e,#d6b15e);
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-}
-.opening button{
-  margin-top:30px;
-  padding:14px 44px;
-  border:none;
-  border-radius:999px;
-  background:linear-gradient(90deg,#f5d48e,#d6b15e);
+.floral-top {
+  background-image: url('https://i.ibb.co/Gvsvj8v/floral-top.png');
+  margin-bottom: 1.5rem;
 }
 
-/* MUSIC */
-.music-btn{
-  position:fixed;
-  bottom:20px;right:20px;
-  background:#d6b15e;
-  border:none;
-  padding:14px;
-  border-radius:50%;
-  z-index:999;
+.floral-bottom {
+  background-image: url('https://i.ibb.co/Gvsvj8v/floral-top.png');
+  transform: rotate(180deg);
+  margin-top: 1.5rem;
+  margin-bottom: 2rem;
 }
 
-/* HERO */
-.hero{
-  position:relative;
-  padding:120px 20px;
-  text-align:center;
-  background:linear-gradient(to bottom,#020617,#0b2e59);
-  overflow:hidden;
-}
-.hero h1{
-  font-family:'Playfair Display',serif;
-  font-size:44px;
-}
-#heroDust{
-  position:absolute;
-  inset:0;
-  z-index:0;
-}
-.hero *{position:relative;z-index:1}
-
-/* DIVIDER */
-.divider{
-  width:70%;
-  height:2px;
-  margin:60px auto;
-  background:linear-gradient(90deg,transparent,#d6b15e,transparent);
-  box-shadow:0 0 25px rgba(214,177,94,.7);
+/* Section: Ayat */
+.ayat-section {
+  text-align: center;
+  padding: 0 1rem;
+  font-family: 'Cormorant Garamond', serif;
 }
 
-/* PROFILE */
-.profile{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:20px;
-  padding:60px 20px;
-}
-.card{
-  border:1px solid rgba(214,177,94,.3);
-  border-radius:22px;
-  padding:30px;
-  text-align:center;
+.surah-title {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #d7b77a;
+  font-size: 1.25rem;
 }
 
-/* =========================
-   GALLERY – GOLD FRAME SNAP
-========================= */
+.ayat-arab {
+  font-size: 1.2rem;
+  color: #fff;
+  font-family: "Scheherazade New", serif, "Amiri Quran";
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
 
-.gallery{
-  padding: 60px 20px;
+.ayat-terjemah {
+  font-size: 0.9rem;
+  color: #ccc;
+}
+
+/* Section: Mempelai */
+.mempelai-section {
+  margin-top: 2.5rem;
+  text-align: center;
+  padding: 0 1rem;
+}
+
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 1.8rem;
+  color: #d7b77a;
+  margin-bottom: 0.4rem;
+}
+
+.memp-adzan {
+  font-size: 0.9rem;
+  color: #ccc;
+  max-width: 340px;
+  margin: 0 auto 2rem;
+  font-style: italic;
+}
+
+.mempelai-list {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 3rem;
+}
+
+.mempelai-item {
+  flex: 1 1 130px;
+  min-width: 130px;
   text-align: center;
 }
 
-/* WRAPPER = SCROLL SNAP */
-.gallery-wrapper{
-  overflow-x: auto;
-  width: 100%;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
+.mempelai-item h4 {
+  font-style: italic;
+  font-weight: 600;
+  font-family: 'Playfair Display', serif;
+  color: #d7b77a;
+  margin-bottom: 0.4rem;
+  font-size: 1.1rem;
 }
 
-/* TRACK */
-.gallery-track{
-  display: flex;
-  gap: 18px;
-  padding: 10px 0;
+.mempelai-item .nama {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 1.3rem;
+  color: #c49e65;
+  margin-bottom: 0.1rem;
 }
 
-/* ITEM */
-.gallery-item{
-  flex: 0 0 80vw;      /* 👈 penting */
-  scroll-snap-align: center;
-  padding: 10px;
-  border-radius: 22px;
-  background: linear-gradient(
-    135deg,
-    #f5d48e,
-    #fff2c2,
-    #d6b15e
-  );
-  box-shadow:
-    0 0 30px rgba(214,177,94,.6),
-    inset 0 0 20px rgba(255,255,255,.25);
-  animation: goldGlow 4s ease-in-out infinite;
-}
-.gallery-item{
-  transition: transform .4s ease;
-}
-
-.gallery-item:active{
-  transform: scale(1.03);
-}
-
-/* IMAGE */
-.gallery-item img{
-  width: 100%;
+.mempelai-item .gelar {
+  font-style: italic;
   display: block;
-  border-radius: 16px;
-  background: #000;
+  font-size: 1rem;
+  color: #b0894a;
 }
 
-/* GOLD GLOW */
-@keyframes goldGlow{
-  0%{
-    box-shadow: 0 0 18px rgba(214,177,94,.4);
+.mempelai-item .orangtua {
+  color: #ddd;
+  font-size: 0.85rem;
+  margin-top: 0.3rem;
+}
+
+.center-ampersand {
+  flex-grow: 0;
+  font-family: 'Playfair Display', serif;
+  font-size: 2.2rem;
+  color: #b0894a;
+  font-weight: 700;
+  padding: 0 0.5rem;
+}
+
+/* Section: Save The Date */
+.save-date-section {
+  padding: 0 0.8rem;
+  text-align: center;
+}
+
+.save-date-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.8rem;
+  font-style: italic;
+  margin-bottom: 0.4rem;
+  color: #fff;
+  font-weight: 600;
+}
+
+.tgl-acara {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem;
+  font-style: italic;
+  color: #b0894a;
+  margin-bottom: 1rem;
+}
+
+.countdown {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+}
+
+.countdown > div {
+  background: #2c2c2c;
+  border-radius: 8px;
+  min-width: 55px;
+  padding: 10px 5px;
+  color: #b0894a;
+  font-weight: 700;
+  font-family: 'Playfair Display', serif;
+}
+
+.countdown span {
+  display: block;
+  font-size: 1.4rem;
+}
+
+.countdown small {
+  font-size: 0.75rem;
+  color: #eee;
+}
+
+/* Box acara */
+.acara-box {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 3rem;
+}
+
+.acara-item {
+  border: 2px solid #b0894a;
+  border-radius: 12px;
+  padding: 1rem;
+  min-width: 180px;
+  color: #d7b77a;
+  max-width: 250px;
+  font-family: 'Cormorant Garamond', serif;
+  text-align: center;
+}
+
+.acara-item p:first-child {
+  font-style: italic;
+  font-size: 1.1rem;
+  margin-bottom: 0.8rem;
+  color: #d7b77a;
+}
+
+.acara-tgl {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  font-weight: 700;
+  font-size: 1.9rem;
+  margin-bottom: 0.6rem;
+  color: #d7b77a;
+  flex-wrap: nowrap;
+  font-family: 'Playfair Display', serif;
+}
+
+.acara-tgl .hari,
+.acara-tgl .bulan {
+  font-size: 1rem;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.acara-tgl .tahun {
+  font-size: 0.95rem;
+  font-weight: 400;
+  padding-top: 10px;
+  flex-shrink: 0;
+}
+
+.waktu {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #ddd;
+  margin-bottom: 0.3rem;
+}
+
+.lokasi {
+  font-size: 0.85rem;
+  color: #ccc;
+}
+
+/* Kado Pernikahan */
+.kado-section {
+  padding: 0 1.2rem;
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.kado-section .section-title {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 1.7rem;
+  margin-bottom: 0.8rem;
+  color: #b0894a;
+}
+
+.kado-section p {
+  font-size: 0.9rem;
+  max-width: 350px;
+  margin: 0 auto 1rem;
+  color: #ddd;
+}
+
+.bank-card {
+  display: flex;
+  background: #f9f9f9;
+  border-radius: 12px;
+  max-width: 350px;
+  margin: 0 auto 1rem;
+  align-items: center;
+  padding: 1rem 1.25rem;
+  box-shadow: 0 2px 7px rgba(0,0,0,0.2);
+  position: relative;
+}
+
+.bank-logo img {
+  height: 36px;
+  width: auto;
+  margin-right: 1rem;
+}
+
+.bank-info {
+  flex-grow: 1;
+  text-align: left;
+  color: #0c214f;
+}
+
+.nama-akun {
+  font-weight: 600;
+  font-size: 1.05rem;
+  margin-bottom: 3px;
+}
+
+.nomor-akun {
+  font-family: monospace;
+  font-size: 0.9rem;
+}
+
+#copy-btn {
+  background: #ccc;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: #333;
+  user-select: none;
+  transition: background-color 0.25s ease;
+}
+
+#copy-btn:hover {
+  background-color: #b49950;
+  color: #fff;
+}
+
+.btn-konfirmasi {
+  display: inline-block;
+  background: #25d366;
+  color: #fff;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 0.55rem 1.5rem;
+  border-radius: 8px;
+  text-decoration: none;
+  margin-top: 0.8rem;
+  box-shadow: 0 2px 8px rgba(37, 211, 102, 0.6);
+  user-select: none;
+}
+
+.btn-konfirmasi svg {
+  margin-right: 0.5rem;
+  vertical-align: middle;
+  fill: white;
+}
+
+/* RSVP & Ucapan */
+.rsvp-section {
+  padding: 0 1.2rem;
+  margin-bottom: 3rem;
+}
+
+.rsvp-section .section-title {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 1.7rem;
+  margin-bottom: 0.6rem;
+  color: #b0894a;
+}
+
+.rsvp-section p {
+  margin-bottom: 1rem;
+  color: #ddd;
+  font-size: 0.9rem;
+}
+
+form#form-ucapan {
+  background: #b0894a;
+  padding: 1rem;
+  border-radius: 12px;
+  display: grid;
+  gap: 0.6rem;
+}
+
+form#form-ucapan input[type="text"],
+form#form-ucapan select,
+form#form-ucapan textarea {
+  width: 100%;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 0.9rem;
+  resize: vertical;
+}
+
+form#form-ucapan select {
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+form#form-ucapan textarea {
+  min-height: 70px;
+  font-family: 'Poppins', sans-serif;
+}
+
+form#form-ucapan button {
+  background: #fff;
+  color: #7b5e2f;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.3s ease;
+}
+
+form#form-ucapan button:hover {
+  background-color: #d7b77a;
+}
+
+.total-ucapan {
+  color: #4e3f0c;
+  font-weight: 700;
+  font-size: 1.05rem;
+  margin-bottom: 0.8rem;
+}
+
+/* List ucapan */
+.ucapan-list {
+  margin-top: 1rem;
+  max-height: 300px;
+  overflow-y: auto;
+  background: #b0894a;
+  border-radius: 10px;
+  padding: 0.5rem;
+  color: #fff;
+  font-size: 0.9rem;
+  box-sizing: border-box;
+}
+
+.ucapan-item {
+  background-color: #7b5e2f;
+  padding: 10px 12px;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  line-height: 1.3;
+  position: relative;
+}
+
+.ucapan-item:last-child {
+  margin-bottom: 0;
+}
+
+.ucapan-head {
+  font-weight: 700;
+  margin-bottom: 3px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.ucapan-nama {
+  font-weight: 800;
+}
+
+.ucapan-status {
+  font-size: 0.85rem;
+  font-style: italic;
+  opacity: 0.9;
+  color: #ddd;
+}
+
+.ucapan-text {
+  white-space: pre-wrap;
+}
+
+/* Thanks Section */
+.thanks-section {
+  padding: 0 1rem 3rem;
+  text-align: center;
+  font-family: 'Cormorant Garamond', serif;
+  color: #d7b77a;
+}
+
+.thanks-section > h2 {
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.thanks-section p {
+  font-style: italic;
+  font-weight: 400;
+  max-width: 350px;
+  margin: 0 auto 1.5rem;
+  font-size: 0.95rem;
+  color: #ccc;
+}
+
+.thanks-section .nama-pengantin {
+  font-weight: 700;
+  font-size: 1.8rem;
+  margin-bottom: 1.8rem;
+  font-style: italic;
+  font-family: 'Playfair Display', serif;
+}
+
+.keluarga-besar {
+  margin-bottom: 1rem;
+}
+
+.keluarga-besar p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #e2d8c3;
+}
+
+.keluarga-besar strong {
+  font-style: italic;
+  color: white;
+  display: block;
+  margin-bottom: 0.2rem;
+}
+
+.signature {
+  margin-top: 2rem;
+  text-align: center;
+  color: #8a9b71;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.9rem;
+}
+
+.signature img {
+  width: 130px;
+  margin-bottom: 0.4rem;
+  border-radius: 10px;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .mempelai-list {
+    flex-direction: column;
   }
-  50%{
-    box-shadow: 0 0 40px rgba(214,177,94,.9);
+  .acara-box {
+    flex-direction: column;
+    gap: 1.25rem;
   }
-  100%{
-    box-shadow: 0 0 18px rgba(214,177,94,.4);
-  }
-}
-
-/* DESKTOP */
-@media (min-width: 768px){
-  .gallery-item{
-    flex: 0 0 45%;
-  }
-}
- 
-/* EVENT */
-.event{text-align:center;padding:60px 20px}
-.event a{
-  display:inline-block;
-  margin-top:20px;
-  padding:14px 36px;
-  background:linear-gradient(90deg,#f5d48e,#d6b15e);
-  color:#000;
-  border-radius:999px;
-}
-
-/* QRIS */
-.qris-section{text-align:center;padding:60px 20px}
-.qris-frame{
-  width:260px;
-  margin:30px auto;
-  padding:16px;
-  border-radius:20px;
-  background:linear-gradient(120deg,#d6b15e,#fff3c4,#d6b15e);
-  box-shadow:0 0 40px rgba(214,177,94,.8);
-}
-.qris-frame img{width:100%;border-radius:12px}
-
-/* QRIS MODAL */
-.qris-modal{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.85);
-  display:none;
-  justify-content:center;
-  align-items:center;
-  z-index:1000;
-}
-.qris-modal.show{display:flex}
-.qris-modal img{
-  width:90%;
-  max-width:420px;
-}
-.qris-close{
-  position:absolute;
-  top:20px;right:25px;
-  font-size:30px;
-  cursor:pointer;
-}
-
-/* COMMENT */
-.comment{text-align:center;padding:60px 20px}
-.comment form{
-  max-width:420px;
-  margin:auto;
-  display:flex;
-  flex-direction:column;
-  gap:12px;
-}
-.comment input,.comment textarea{
-  padding:14px;
-  border-radius:12px;
-  border:none;
-}
-.comment button{
-  padding:14px;
-  border:none;
-  border-radius:999px;
-  background:linear-gradient(90deg,#f5d48e,#d6b15e);
-}
-#commentList{margin-top:20px}
-#commentList div{margin-bottom:12px}
-
-/* FOOTER */
-footer{
-  padding:40px;
-  text-align:center;
-}
-
-/* REVEAL */
-.reveal{
-  opacity:0;
-  transform:translateY(40px);
-  transition:1s ease;
-}
-.reveal.show{
-  opacity:1;
-  transform:none;
-}
-
-@media (min-width: 768px) {
-  .gallery-item {
-    min-width: 45vw;
-    max-width: 45vw;
-  }
-
-  .gallery-wrapper {
-    padding: 0 5%;
+  .acara-item {
+    max-width: 100%;
   }
 }
