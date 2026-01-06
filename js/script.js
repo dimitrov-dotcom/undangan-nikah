@@ -1,184 +1,157 @@
-/* =====================================================
-   DOM READY
-===================================================== */
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener('DOMContentLoaded', () => {
+    
+    // 1. Loading Screen
+    window.addEventListener('load', () => {
+        const loader = document.getElementById('loader');
+        loader.style.opacity = '0';
+        setTimeout(() => {
+            loader.style.display = 'none';
+        }, 800);
+    });
 
-  /* ================= OPENING ================= */
-  const opening = document.getElementById('opening');
-  const openBtn = document.getElementById('openBtn');
-
-  if (opening && openBtn) {
-    // kunci scroll saat opening
-    document.body.style.overflow = 'hidden';
+    // 2. Opening Screen & Music
+    const openBtn = document.getElementById('open-btn');
+    const opening = document.getElementById('opening');
+    const mainContent = document.getElementById('main-content');
+    const music = document.getElementById('bg-music');
+    const musicBtn = document.getElementById('music-btn');
+    const musicIcon = musicBtn.querySelector('i');
+    let isPlaying = false;
 
     openBtn.addEventListener('click', () => {
-      opening.classList.add('hide');
-      document.body.style.overflow = '';
-    });
-  }
-
-  /* ================= COUNTDOWN ================= */
-  function updateCountdown() {
-    const targetDate = new Date('2026-01-10T14:00:00');
-    const now = new Date();
-    const diff = targetDate - now;
-
-    const d = document.getElementById('countdown-days');
-    const h = document.getElementById('countdown-hours');
-    const m = document.getElementById('countdown-minutes');
-    const s = document.getElementById('countdown-seconds');
-
-    if (!d || !h || !m || !s) return;
-
-    if (diff <= 0) {
-      d.textContent = h.textContent = m.textContent = s.textContent = "00";
-      clearInterval(timerInterval);
-      return;
-    }
-
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-    const minutes = Math.floor((diff / (1000 * 60)) % 60);
-    const seconds = Math.floor((diff / 1000) % 60);
-
-    d.textContent = String(days).padStart(2, '0');
-    h.textContent = String(hours).padStart(2, '0');
-    m.textContent = String(minutes).padStart(2, '0');
-    s.textContent = String(seconds).padStart(2, '0');
-  }
-
-  const timerInterval = setInterval(updateCountdown, 1000);
-  updateCountdown();
-
-  /* ================= COPY REKENING ================= */
-  const copyBtn = document.getElementById('copy-btn');
-  const nomorRekening = "138701000926530";
-
-  if (copyBtn) {
-    copyBtn.addEventListener('click', () => {
-      navigator.clipboard.writeText(nomorRekening).then(() => {
-        copyBtn.textContent = "Tersalin!";
-        copyBtn.style.backgroundColor = "#b0894a";
-        copyBtn.style.color = "#fff";
-
+        // Hide Opening
+        opening.style.transform = 'translateY(-100%)';
+        document.body.classList.remove('noscroll');
+        
+        // Show Main Content
+        mainContent.style.display = 'block';
         setTimeout(() => {
-          copyBtn.textContent = "Salin";
-          copyBtn.style.backgroundColor = "#ccc";
-          copyBtn.style.color = "#333";
-        }, 2500);
-      });
-    });
-  }
+            mainContent.style.opacity = '1';
+        }, 100);
 
-  /* ================= RSVP & UCAPAN ================= */
-  const form = document.getElementById('form-ucapan');
-  const ucapanList = document.getElementById('ucapan-list');
-  const totalUcapan = document.getElementById('total-ucapan');
-
-  let ucapanData = [
-    {
-      nama: 'April Iakuan',
-      status: 'Hadir',
-      ucapan: 'Masya Allah selamat sayangku 🤲',
-      waktu: '3 hari lalu'
-    },
-    {
-      nama: 'Zahra',
-      status: 'Hadir',
-      ucapan: 'Masyaallah, lancar sampai hari H 🤍',
-      waktu: '1 minggu lalu'
-    }
-  ];
-
-  function escapeHtml(text) {
-    const div = document.createElement('div');
-    div.textContent = text;
-    return div.innerHTML;
-  }
-
-  function renderUcapan() {
-    if (!ucapanList || !totalUcapan) return;
-
-    ucapanList.innerHTML = '';
-    ucapanData.forEach(u => {
-      const item = document.createElement('div');
-      item.className = 'ucapan-item';
-      item.innerHTML = `
-        <div class="ucapan-head">
-          <span class="ucapan-nama">${escapeHtml(u.nama)}</span>
-          <span class="ucapan-status">${escapeHtml(u.status)}</span>
-        </div>
-        <p class="ucapan-text">${escapeHtml(u.ucapan).replace(/\n/g, '<br>')}</p>
-        <small style="opacity:.6">${escapeHtml(u.waktu)}</small>
-      `;
-      ucapanList.appendChild(item);
+        // Play Music
+        music.play();
+        isPlaying = true;
+        musicBtn.style.display = 'flex';
     });
 
-    totalUcapan.textContent = `${ucapanData.length} Ucapan`;
-  }
-
-  renderUcapan();
-
-  if (form) {
-    form.addEventListener('submit', e => {
-      e.preventDefault();
-
-      const nama = form.nama.value.trim();
-      const status = form.status.value;
-      const ucapan = form.ucapan.value.trim();
-
-      if (!nama || !status || !ucapan) {
-        alert("Mohon lengkapi semua kolom.");
-        return;
-      }
-
-      ucapanData.unshift({
-        nama,
-        status,
-        ucapan,
-        waktu: 'Baru saja'
-      });
-
-      renderUcapan();
-      form.reset();
-      form.status.selectedIndex = 0;
+    // Music Toggle
+    musicBtn.addEventListener('click', () => {
+        if (isPlaying) {
+            music.pause();
+            musicIcon.classList.remove('fa-music');
+            musicIcon.classList.add('fa-pause');
+        } else {
+            music.play();
+            musicIcon.classList.remove('fa-pause');
+            musicIcon.classList.add('fa-music');
+        }
+        isPlaying = !isPlaying;
     });
-  }
 
-  /* ================= SCROLL REVEAL ================= */
-  const revealItems = document.querySelectorAll('.reveal');
-
-  const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('show');
-        revealObserver.unobserve(entry.target);
-      }
+    // 3. Init AOS (Animate On Scroll)
+    AOS.init({
+        duration: 1000,
+        once: true,
+        offset: 100,
     });
-  }, { threshold: 0.15 });
 
-  revealItems.forEach(el => revealObserver.observe(el));
+    // 4. Countdown Timer
+    const weddingDate = new Date("Oct 25, 2025 08:00:00").getTime();
 
+    const timer = setInterval(() => {
+        const now = new Date().getTime();
+        const distance = weddingDate - now;
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        document.getElementById("days").innerText = days < 10 ? '0' + days : days;
+        document.getElementById("hours").innerText = hours < 10 ? '0' + hours : hours;
+        document.getElementById("minutes").innerText = minutes < 10 ? '0' + minutes : minutes;
+        document.getElementById("seconds").innerText = seconds < 10 ? '0' + seconds : seconds;
+
+        if (distance < 0) {
+            clearInterval(timer);
+            document.querySelector(".countdown-wrapper").innerHTML = "<h3 class='text-gold'>Acara Telah Dimulai!</h3>";
+        }
+    }, 1000);
+
+    // 5. Swiper Gallery
+    const swiper = new Swiper(".mySwiper", {
+        effect: "coverflow",
+        grabCursor: true,
+        centeredSlides: true,
+        slidesPerView: "auto",
+        loop: true,
+        coverflowEffect: {
+            rotate: 50,
+            stretch: 0,
+            depth: 100,
+            modifier: 1,
+            slideShadows: true,
+        },
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true
+        },
+        autoplay: {
+            delay: 2500,
+            disableOnInteraction: false,
+        },
+    });
+
+    // 6. RSVP Form Handler (Redirect to WA)
+    const rsvpForm = document.getElementById('rsvp-form');
+    rsvpForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        const name = document.getElementById('name').value;
+        const guests = document.getElementById('guests').value;
+        const status = document.getElementById('status').value;
+        const message = document.getElementById('message').value;
+
+        const text = `Halo, saya ${name}. Saya ingin konfirmasi ${status} dengan jumlah tamu ${guests} orang.%0A%0APesan: ${message}`;
+        const waNumber = "6281234567890"; // Ganti dengan nomor WA tujuan
+        
+        showToast("Membuka WhatsApp...", "info");
+        setTimeout(() => {
+            window.open(`https://wa.me/${waNumber}?text=${text}`, '_blank');
+        }, 1000);
+    });
 });
-/* ================= GOLD SPARKLE OPENING ================= */
-const sparkleLayer = document.querySelector('.sparkle-layer');
 
-function createSparkle() {
-  if (!sparkleLayer) return;
-
-  const sparkle = document.createElement('span');
-  sparkle.className = 'sparkle';
-
-  sparkle.style.left = Math.random() * 100 + '%';
-  sparkle.style.top = Math.random() * 100 + '%';
-  sparkle.style.animationDuration = (3 + Math.random() * 2) + 's';
-
-  sparkleLayer.appendChild(sparkle);
-
-  setTimeout(() => {
-    sparkle.remove();
-  }, 4000);
+// 7. Copy to Clipboard Function (Global Scope)
+function copyToClipboard(text) {
+    navigator.clipboard.writeText(text).then(() => {
+        showToast("Nomor berhasil disalin!", "success");
+    }).catch(err => {
+        showToast("Gagal menyalin", "error");
+    });
 }
 
-/* Muncul pelan, tidak ramai */
-setInterval(createSparkle, 600);
+// 8. Custom Toast Notification (Global Scope)
+function showToast(message, type = 'success') {
+    const container = document.getElementById('toast-container');
+    const toast = document.createElement('div');
+    toast.className = 'toast';
+    
+    let icon = 'fa-check-circle';
+    let color = '#D4AF37'; // Gold
+    
+    if(type === 'info') { icon = 'fa-info-circle'; color = '#2C2C2C'; }
+    if(type === 'error') { icon = 'fa-exclamation-circle'; color = 'red'; }
+
+    toast.style.borderLeftColor = color;
+    toast.innerHTML = `<i class="fas ${icon}" style="color:${color}"></i> <span>${message}</span>`;
+
+    container.appendChild(toast);
+
+    setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transform = 'translateY(20px)';
+        setTimeout(() => toast.remove(), 300);
+    }, 3000);
+}

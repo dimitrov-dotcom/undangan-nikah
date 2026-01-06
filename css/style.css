@@ -1,772 +1,483 @@
+/* =========================================
+   1. RESET & VARIABLES
+   ========================================= */
+:root {
+    --color-gold: #D4AF37;
+    --color-gold-light: #F3E5AB;
+    --color-gold-dark: #AA8C2C;
+    --color-ivory: #FFFFF0;
+    --color-text: #2C2C2C;
+    --color-text-light: #666666;
+    --color-white: #FFFFFF;
+    --glass-bg: rgba(255, 255, 255, 0.75);
+    --glass-border: rgba(255, 255, 255, 0.4);
+    --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+    --font-heading: 'Cormorant Garamond', serif;
+    --font-body: 'Poppins', sans-serif;
+    --transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
 body {
-  font-family: 'Poppins', sans-serif;
-  background: #1a1a1a;
-  color: #ddd;
-  margin: 0;
-  padding: 0;
-  line-height: 1.5;
-}
-main#undangan {
-  max-width: 420px;
-  margin: 0 auto;
-  padding: 1rem 1.2rem 3rem;
-}
-
-/* Floral Ornaments */
-
-.floral-top, .floral-bottom {
-  width: 100%;
-  height: 40px;
-  background-repeat: no-repeat;
-  background-position: center top;
-  margin-bottom: 1rem;
-}
-
-.floral-top {
-  background-image: url('https://i.ibb.co/Gvsvj8v/floral-top.png');
-  margin-bottom: 1.5rem;
-}
-
-.floral-bottom {
-  background-image: url('https://i.ibb.co/Gvsvj8v/floral-top.png');
-  transform: rotate(180deg);
-  margin-top: 1.5rem;
-  margin-bottom: 2rem;
-}
-
-/* Section: Ayat */
-.ayat-section {
-  text-align: center;
-  padding: 0 1rem;
-  font-family: 'Cormorant Garamond', serif;
-}
-
-.surah-title {
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-  color: #d7b77a;
-  font-size: 1.25rem;
-}
-
-.ayat-arab {
-  font-size: 1.2rem;
-  color: #fff;
-  font-family: "Scheherazade New", serif, "Amiri Quran";
-  margin-bottom: 1rem;
-  line-height: 1.6;
-}
-
-.ayat-terjemah {
-  font-size: 0.9rem;
-  color: #ccc;
-}
-
-/* Section: Mempelai */
-.mempelai-section {
-  margin-top: 2.5rem;
-  text-align: center;
-  padding: 0 1rem;
-}
-
-.section-title {
-  font-family: 'Playfair Display', serif;
-  font-weight: 700;
-  font-size: 1.8rem;
-  color: #d7b77a;
-  margin-bottom: 0.4rem;
-}
-
-.memp-adzan {
-  font-size: 0.9rem;
-  color: #ccc;
-  max-width: 340px;
-  margin: 0 auto 2rem;
-  font-style: italic;
-}
-
-.mempelai-list {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  align-items: center;
-  flex-wrap: wrap;
-  margin-bottom: 3rem;
-}
-
-.mempelai-item {
-  flex: 1 1 130px;
-  min-width: 130px;
-  text-align: center;
-}
-
-.mempelai-item h4 {
-  font-style: italic;
-  font-weight: 600;
-  font-family: 'Playfair Display', serif;
-  color: #d7b77a;
-  margin-bottom: 0.4rem;
-  font-size: 1.1rem;
-}
-
-.mempelai-item .nama {
-  font-family: 'Playfair Display', serif;
-  font-weight: 700;
-  font-size: 1.3rem;
-  color: #c49e65;
-  margin-bottom: 0.1rem;
-}
-
-.mempelai-item .gelar {
-  font-style: italic;
-  display: block;
-  font-size: 1rem;
-  color: #b0894a;
-}
-
-.mempelai-item .orangtua {
-  color: #ddd;
-  font-size: 0.85rem;
-  margin-top: 0.3rem;
-}
-
-.center-ampersand {
-  flex-grow: 0;
-  font-family: 'Playfair Display', serif;
-  font-size: 2.2rem;
-  color: #b0894a;
-  font-weight: 700;
-  padding: 0 0.5rem;
-}
-
-/* Section: Save The Date */
-.save-date-section {
-  padding: 0 0.8rem;
-  text-align: center;
-}
-
-.save-date-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.8rem;
-  font-style: italic;
-  margin-bottom: 0.4rem;
-  color: #fff;
-  font-weight: 600;
-}
-
-.tgl-acara {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.2rem;
-  font-style: italic;
-  color: #b0894a;
-  margin-bottom: 1rem;
-}
-
-.countdown {
-  display: flex;
-  justify-content: center;
-  gap: 0.75rem;
-  margin-bottom: 2rem;
-}
-
-.countdown > div {
-  background: #2c2c2c;
-  border-radius: 8px;
-  min-width: 55px;
-  padding: 10px 5px;
-  color: #b0894a;
-  font-weight: 700;
-  font-family: 'Playfair Display', serif;
-}
-
-.countdown span {
-  display: block;
-  font-size: 1.4rem;
-}
-
-.countdown small {
-  font-size: 0.75rem;
-  color: #eee;
-}
-
-/* Box acara */
-.acara-box {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  flex-wrap: wrap;
-  margin-bottom: 3rem;
-}
-
-.acara-item {
-  border: 2px solid #b0894a;
-  border-radius: 12px;
-  padding: 1rem;
-  min-width: 180px;
-  color: #d7b77a;
-  max-width: 250px;
-  font-family: 'Cormorant Garamond', serif;
-  text-align: center;
-}
-
-.acara-item p:first-child {
-  font-style: italic;
-  font-size: 1.1rem;
-  margin-bottom: 0.8rem;
-  color: #d7b77a;
-}
-
-.acara-tgl {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  font-weight: 700;
-  font-size: 1.9rem;
-  margin-bottom: 0.6rem;
-  color: #d7b77a;
-  flex-wrap: nowrap;
-  font-family: 'Playfair Display', serif;
-}
-
-.acara-tgl .hari,
-.acara-tgl .bulan {
-  font-size: 1rem;
-  font-weight: 600;
-  flex-shrink: 0;
-}
-
-.acara-tgl .tahun {
-  font-size: 0.95rem;
-  font-weight: 400;
-  padding-top: 10px;
-  flex-shrink: 0;
-}
-
-.waktu {
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: #ddd;
-  margin-bottom: 0.3rem;
-}
-
-.lokasi {
-  font-size: 0.85rem;
-  color: #ccc;
-}
-
-/* Kado Pernikahan */
-.kado-section {
-  padding: 0 1.2rem;
-  text-align: center;
-  margin-bottom: 3rem;
-}
-
-.kado-section .section-title {
-  font-family: 'Playfair Display', serif;
-  font-weight: 700;
-  font-size: 1.7rem;
-  margin-bottom: 0.8rem;
-  color: #b0894a;
-}
-
-.kado-section p {
-  font-size: 0.9rem;
-  max-width: 350px;
-  margin: 0 auto 1rem;
-  color: #ddd;
-}
-
-.bank-card {
-  display: flex;
-  background: #f9f9f9;
-  border-radius: 12px;
-  max-width: 350px;
-  margin: 0 auto 1rem;
-  align-items: center;
-  padding: 1rem 1.25rem;
-  box-shadow: 0 2px 7px rgba(0,0,0,0.2);
-  position: relative;
-}
-
-.bank-logo img {
-  height: 36px;
-  width: auto;
-  margin-right: 1rem;
-}
-
-.bank-info {
-  flex-grow: 1;
-  text-align: left;
-  color: #0c214f;
-}
-
-.nama-akun {
-  font-weight: 600;
-  font-size: 1.05rem;
-  margin-bottom: 3px;
-}
-
-.nomor-akun {
-  font-family: monospace;
-  font-size: 0.9rem;
-}
-
-#copy-btn {
-  background: #ccc;
-  border: none;
-  padding: 6px 12px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: 600;
-  font-size: 0.85rem;
-  color: #333;
-  user-select: none;
-  transition: background-color 0.25s ease;
-}
-
-#copy-btn:hover {
-  background-color: #b49950;
-  color: #fff;
-}
-
-.btn-konfirmasi {
-  display: inline-block;
-  background: #25d366;
-  color: #fff;
-  font-weight: 600;
-  font-size: 1rem;
-  padding: 0.55rem 1.5rem;
-  border-radius: 8px;
-  text-decoration: none;
-  margin-top: 0.8rem;
-  box-shadow: 0 2px 8px rgba(37, 211, 102, 0.6);
-  user-select: none;
-}
-
-.btn-konfirmasi svg {
-  margin-right: 0.5rem;
-  vertical-align: middle;
-  fill: white;
-}
-
-/* RSVP & Ucapan */
-.rsvp-section {
-  padding: 0 1.2rem;
-  margin-bottom: 3rem;
-}
-
-.rsvp-section .section-title {
-  font-family: 'Playfair Display', serif;
-  font-weight: 700;
-  font-size: 1.7rem;
-  margin-bottom: 0.6rem;
-  color: #b0894a;
-}
-
-.rsvp-section p {
-  margin-bottom: 1rem;
-  color: #ddd;
-  font-size: 0.9rem;
-}
-
-form#form-ucapan {
-  background: #b0894a;
-  padding: 1rem;
-  border-radius: 12px;
-  display: grid;
-  gap: 0.6rem;
-}
-
-form#form-ucapan input[type="text"],
-form#form-ucapan select,
-form#form-ucapan textarea {
-  width: 100%;
-  border: none;
-  border-radius: 8px;
-  padding: 8px 12px;
-  font-size: 0.9rem;
-  resize: vertical;
-}
-
-form#form-ucapan select {
-  font-size: 0.95rem;
-  font-weight: 600;
-}
-
-form#form-ucapan textarea {
-  min-height: 70px;
-  font-family: 'Poppins', sans-serif;
-}
-
-form#form-ucapan button {
-  background: #fff;
-  color: #7b5e2f;
-  padding: 10px;
-  border: none;
-  border-radius: 8px;
-  font-weight: 700;
-  font-size: 1rem;
-  cursor: pointer;
-  user-select: none;
-  transition: background-color 0.3s ease;
-}
-
-form#form-ucapan button:hover {
-  background-color: #d7b77a;
-}
-
-.total-ucapan {
-  color: #4e3f0c;
-  font-weight: 700;
-  font-size: 1.05rem;
-  margin-bottom: 0.8rem;
-}
-
-/* List ucapan */
-.ucapan-list {
-  margin-top: 1rem;
-  max-height: 300px;
-  overflow-y: auto;
-  background: #b0894a;
-  border-radius: 10px;
-  padding: 0.5rem;
-  color: #fff;
-  font-size: 0.9rem;
-  box-sizing: border-box;
-}
-
-.ucapan-item {
-  background-color: #7b5e2f;
-  padding: 10px 12px;
-  border-radius: 8px;
-  margin-bottom: 8px;
-  line-height: 1.3;
-  position: relative;
-}
-
-.ucapan-item:last-child {
-  margin-bottom: 0;
-}
-
-.ucapan-head {
-  font-weight: 700;
-  margin-bottom: 3px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 8px;
-  flex-wrap: wrap;
-}
-
-.ucapan-nama {
-  font-weight: 800;
-}
-
-.ucapan-status {
-  font-size: 0.85rem;
-  font-style: italic;
-  opacity: 0.9;
-  color: #ddd;
-}
-
-.ucapan-text {
-  white-space: pre-wrap;
-}
-
-/* Thanks Section */
-.thanks-section {
-  padding: 0 1rem 3rem;
-  text-align: center;
-  font-family: 'Cormorant Garamond', serif;
-  color: #d7b77a;
-}
-
-.thanks-section > h2 {
-  font-weight: 700;
-  margin-bottom: 1rem;
-}
-
-.thanks-section p {
-  font-style: italic;
-  font-weight: 400;
-  max-width: 350px;
-  margin: 0 auto 1.5rem;
-  font-size: 0.95rem;
-  color: #ccc;
-}
-
-.thanks-section .nama-pengantin {
-  font-weight: 700;
-  font-size: 1.8rem;
-  margin-bottom: 1.8rem;
-  font-style: italic;
-  font-family: 'Playfair Display', serif;
-}
-
-.keluarga-besar {
-  margin-bottom: 1rem;
-}
-
-.keluarga-besar p {
-  margin: 0;
-  font-size: 0.95rem;
-  color: #e2d8c3;
-}
-
-.keluarga-besar strong {
-  font-style: italic;
-  color: white;
-  display: block;
-  margin-bottom: 0.2rem;
-}
-
-.signature {
-  margin-top: 2rem;
-  text-align: center;
-  color: #8a9b71;
-  font-family: 'Poppins', sans-serif;
-  font-size: 0.9rem;
-}
-
-.signature img {
-  width: 130px;
-  margin-bottom: 0.4rem;
-  border-radius: 10px;
-}
-
-/* Responsive */
-@media (max-width: 480px) {
-  .mempelai-list {
-    flex-direction: column;
-  }
-  .acara-box {
-    flex-direction: column;
-    gap: 1.25rem;
-  }
-  .acara-item {
-    max-width: 100%;
-  }
-}
-/* ================= OPENING FIX ================= */
-.opening {
-  position: fixed;
-  inset: 0;
-  background: radial-gradient(circle at top, #2a2a2a, #0f0f0f);
-  z-index: 9999;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  text-align: center;
-}
-
-.opening-inner {
-  padding: 2rem;
-  animation: fadeIn 1.2s ease forwards;
-}
-
-.opening-sub {
-  letter-spacing: 4px;
-  font-size: 0.8rem;
-  opacity: 0.7;
-  margin-bottom: 0.5rem;
-}
-
-.opening-title {
-  font-family: 'Playfair Display', serif;
-  font-size: 2.4rem;
-  color: #d7b77a;
-  margin-bottom: 0.5rem;
-}
-
-.opening-date {
-  font-style: italic;
-  color: #b0894a;
-  margin-bottom: 2rem;
-}
-
-.open-btn {
-  background: transparent;
-  border: 2px solid #b0894a;
-  color: #d7b77a;
-  padding: 0.7rem 1.8rem;
-  border-radius: 50px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.open-btn:hover {
-  background: #b0894a;
-  color: #111;
-}
-
-/* HIDE OPENING */
-.opening.hide {
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 1s ease;
-}
-
-/* Animasi masuk */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(15px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
- #undangan {
-  opacity: 0;
-  transition: opacity 1s ease;
- }
-}
-
-/* ANIMATION */
-@keyframes openingFade {
-  from {
-    opacity: 0;
-    transform: scale(0.92);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-/* =========================
-   GOLD AMBIENT GLOW
-========================= */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background:
-    radial-gradient(circle at 30% 20%, rgba(215,183,122,0.12), transparent 40%),
-    radial-gradient(circle at 70% 80%, rgba(176,137,74,0.12), transparent 45%);
-  animation: goldFloat 14s ease-in-out infinite alternate;
-  pointer-events: none;
-  z-index: 0;
-}
-
-@keyframes goldFloat {
-  0% {
-    transform: translateY(0) scale(1);
+    font-family: var(--font-body);
+    color: var(--color-text);
+    background-color: var(--color-ivory);
+    background-image: url('https://www.transparenttextures.com/patterns/cream-paper.png');
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+body.noscroll {
+    overflow: hidden;
+}
+
+/* Typography */
+h1, h2, h3, h4 {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    color: var(--color-text);
+}
+
+.text-gold {
+    color: var(--color-gold);
+    background: linear-gradient(45deg, var(--color-gold-dark), var(--color-gold), var(--color-gold-light), var(--color-gold));
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shine 4s linear infinite;
+}
+
+@keyframes shine {
+    to { background-position: 200% center; }
+}
+
+/* =========================================
+   2. UTILITIES & COMPONENTS
+   ========================================= */
+.container {
+    width: 90%;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.section-padding {
+    padding: 80px 0;
+}
+
+.glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    box-shadow: var(--glass-shadow);
+    padding: 40px 30px;
+    margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-luxury {
+    display: inline-block;
+    padding: 12px 35px;
+    background: linear-gradient(135deg, var(--color-gold-dark), var(--color-gold));
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-family: var(--font-body);
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-luxury:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(212, 175, 55, 0.4);
+}
+
+.btn-outline {
+    background: transparent;
+    border: 1px solid var(--color-gold);
+    color: var(--color-gold-dark);
+}
+
+.btn-outline:hover {
+    background: var(--color-gold);
+    color: white;
+}
+
+/* Decorative Elements */
+.flower-divider {
+    text-align: center;
+    margin: 40px 0;
     opacity: 0.6;
-  }
-  100% {
-    transform: translateY(-20px) scale(1.05);
-    opacity: 0.85;
-  }
+}
+.flower-divider img {
+    width: 150px;
+    height: auto;
 }
 
-/* pastikan konten di atas glow */
-main#undangan,
-.opening {
-  position: relative;
-  z-index: 1;
-}
-/* =========================
-   SCROLL REVEAL
-========================= */
-.reveal {
-  opacity: 0;
-  transform: translateY(40px);
-  transition: opacity 0.9s ease, transform 0.9s ease;
-}
-
-.reveal.show {
-  opacity: 1;
-  transform: translateY(0);
+/* =========================================
+   3. LOADING SCREEN
+   ========================================= */
+#loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--color-ivory);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.8s ease;
 }
 
-/* ================= GOLD LIGHT OPENING ================= */
-.opening::before,
-.opening::after {
-  content: "";
-  position: absolute;
-  inset: -50%;
-  background:
-    radial-gradient(
-      circle at 30% 30%,
-      rgba(215,183,122,0.18),
-      transparent 40%
-    ),
-    radial-gradient(
-      circle at 70% 60%,
-      rgba(176,137,74,0.15),
-      transparent 45%
-    );
-  animation: goldMove 18s linear infinite;
-  pointer-events: none;
+.loader-content {
+    text-align: center;
 }
 
-.opening::after {
-  animation-duration: 28s;
-  animation-direction: reverse;
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 3px solid rgba(212, 175, 55, 0.3);
+    border-radius: 50%;
+    border-top-color: var(--color-gold);
+    animation: spin 1s ease-in-out infinite;
+    margin: 0 auto 20px;
 }
 
-/* Gerakan cahaya */
-@keyframes goldMove {
-  0% {
-    transform: translate(-10%, -10%) scale(1);
-  }
-  50% {
-    transform: translate(10%, 10%) scale(1.05);
-  }
-  100% {
-    transform: translate(-10%, -10%) scale(1);
-  }
+@keyframes spin {
+    to { transform: rotate(360deg); }
 }
 
-/* Pastikan konten di atas cahaya */
-.opening-inner {
-  position: relative;
-  z-index: 2;
-}
-.opening {
-  animation: softGlow 6s ease-in-out infinite;
-}
-
-@keyframes softGlow {
-  0%, 100% {
-    box-shadow: inset 0 0 60px rgba(215,183,122,0.05);
-  }
-  50% {
-    box-shadow: inset 0 0 120px rgba(215,183,122,0.12);
-  }
-}
-/* ================= GOLD SPARKLE ================= */
-.sparkle-layer {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 1;
-  overflow: hidden;
+/* =========================================
+   4. MUSIC CONTROL
+   ========================================= */
+.music-control {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background: var(--color-gold);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 1000;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    animation: pulse 2s infinite;
 }
 
-.sparkle {
-  position: absolute;
-  width: 4px;
-  height: 4px;
-  background: radial-gradient(circle, #f7e7b4 0%, #d7b77a 60%, transparent 70%);
-  border-radius: 50%;
-  opacity: 0;
-  animation: sparkleFloat 4s ease-in-out forwards;
-  box-shadow: 0 0 8px rgba(215,183,122,0.9);
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7); }
+    70% { box-shadow: 0 0 0 10px rgba(212, 175, 55, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
 }
 
-@keyframes sparkleFloat {
-  0% {
+/* =========================================
+   5. OPENING SCREEN (COVER)
+   ========================================= */
+#opening {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: url('https://picsum.photos/seed/weddingbg/1080/1920') no-repeat center center/cover;
+    z-index: 5000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+#opening::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.4);
+}
+
+.opening-content {
+    position: relative;
+    z-index: 2;
+    padding: 20px;
+}
+
+.couple-names-cover {
+    font-size: 3.5rem;
+    font-family: var(--font-heading);
+    margin: 20px 0;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    line-height: 1.2;
+}
+
+/* =========================================
+   6. MAIN CONTENT
+   ========================================= */
+#main-content {
+    display: none; /* Hidden initially */
     opacity: 0;
-    transform: translateY(0) scale(0.5);
-  }
-  20% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-    transform: translateY(-80px) scale(1);
-  }
+    transition: opacity 1s ease;
+    background-color: var(--color-ivory);
 }
 
+/* Hero Section */
+.hero {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.8), var(--color-ivory)),
+                url('https://picsum.photos/seed/flowers/1920/1080');
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.hero h1 {
+    font-size: 4rem;
+    margin-bottom: 10px;
+}
+
+/* Couple Section */
+.couple-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+    text-align: center;
+}
+
+.couple-card img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid var(--color-gold);
+    padding: 5px;
+    margin-bottom: 20px;
+    transition: transform 0.5s;
+}
+
+.couple-card:hover img {
+    transform: scale(1.05);
+}
+
+.social-link {
+    color: var(--color-text);
+    margin: 0 5px;
+    font-size: 1.2rem;
+    transition: color 0.3s;
+}
+
+.social-link:hover {
+    color: var(--color-gold);
+}
+
+/* Event Details */
+.event-card {
+    text-align: center;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    padding-bottom: 30px;
+    margin-bottom: 30px;
+}
+
+.event-card:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+.event-icon {
+    font-size: 2rem;
+    color: var(--color-gold);
+    margin-bottom: 15px;
+}
+
+/* Countdown */
+.countdown-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.time-box {
+    text-align: center;
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    min-width: 80px;
+}
+
+.time-val {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--color-gold-dark);
+}
+
+.time-label {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Gallery (Swiper) */
+.swiper {
+    width: 100%;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.swiper-slide {
+    background-position: center;
+    background-size: cover;
+    width: 300px;
+    height: 400px;
+    border-radius: 20px;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+    filter: grayscale(20%);
+    transition: filter 0.3s;
+}
+
+.swiper-slide:hover {
+    filter: grayscale(0%);
+}
+
+/* QR Code Section */
+.qr-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.qr-card {
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+}
+
+.qr-card img {
+    width: 150px;
+    height: 150px;
+}
+
+/* RSVP Form */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.5);
+    font-family: var(--font-body);
+    transition: 0.3s;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--color-gold);
+    background: white;
+}
+
+/* Digital Gift (Angpao) */
+.gift-card {
+    text-align: center;
+}
+
+.bank-logo {
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.account-number {
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+    margin: 10px 0;
+    font-family: monospace;
+}
+
+/* Footer */
+footer {
+    background: #1a1a1a;
+    color: #888;
+    padding: 40px 0;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+/* Toast Notification */
+#toast-container {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2000;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.toast {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(5px);
+    border-left: 4px solid var(--color-gold);
+    padding: 15px 25px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 300px;
+    animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* =========================================
+   7. MEDIA QUERIES
+   ========================================= */
+@media (min-width: 768px) {
+    .couple-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+    .hero h1 { font-size: 6rem; }
+    .section-padding { padding: 100px 0; }
+}
